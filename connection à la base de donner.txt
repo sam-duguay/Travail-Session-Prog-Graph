@@ -1,0 +1,2 @@
+
+Server=cours.cegep3r.info;Database=a2024_420335ri_eq9 ;
