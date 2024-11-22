@@ -33,3 +33,6 @@ La page d'activité contient le nom et la moyenne des notes d'évaluation de cha
 3) Il peut cliquer sur une activité et choisir sa séance (combo-box?)
 4) UNE SEULE INSCRIPTION par activité.
 5) Il peut noter sur 5 une activité (donc la séance)
+
+### Win UI
+Rating control pour noter sur 5
