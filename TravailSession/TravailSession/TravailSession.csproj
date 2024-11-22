@@ -13,7 +13,20 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Pages\PageAffichage.xaml" />
+    <None Remove="Pages\AccueilActivite.xaml" />
+    <None Remove="Pages\Activite\ActiviteC.xaml" />
+    <None Remove="Pages\Activite\ActiviteCRUD.xaml" />
+    <None Remove="Pages\Activite\ActiviteU.xaml" />
+    <None Remove="Pages\Adherent\AdherentC.xaml" />
+    <None Remove="Pages\Adherent\AdherentCRUD.xaml" />
+    <None Remove="Pages\Adherent\AdherentU.xaml" />
+    <None Remove="Pages\PageActiviteCRUD.xaml" />
+    <None Remove="Pages\PageAdherentCRUD.xaml" />
+    <None Remove="Pages\PageSeanceCRUD.xaml" />
+    <None Remove="Pages\Seance\SeanceC.xaml" />
+    <None Remove="Pages\Seance\SeanceCRUD.xaml" />
+    <None Remove="Pages\Seance\SeanceU.xaml" />
+    <None Remove="Pages\Statistique.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +55,72 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Pages\PageAffichage.xaml">
+    <Page Update="Pages\Statistique.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\AccueilActivite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Seance\SeanceU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Seance\SeanceC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\PageSeanceCRUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\PageActiviteCRUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\PageAdherentCRUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Seance\SeanceCRUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Adherent\AdherentU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Adherent\AdherentC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Adherent\AdherentCRUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Activite\ActiviteU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Activite\ActiviteC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Activite\ActiviteCRUD.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

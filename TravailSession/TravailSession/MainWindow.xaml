@@ -8,8 +8,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-        <TextBlock x:Name="tbc">Ceci est un test</TextBlock>
-    </StackPanel>
+    <Grid>
+        <NavigationView PaneDisplayMode="Top" PaneTitle="Menu" x:Name="navView" IsBackEnabled="False"
+            SelectionChanged="navView_SelectionChanged"  IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Les activités" x:Name="iActivite" Icon="List"/>
+                <NavigationViewItem Content="CRUD Activité" x:Name="iActiviteCRUD" Icon="Folder"/>
+                <NavigationViewItem Content="CRUD Adhérent" x:Name="iAdherentCRUD" Icon="Folder"/>
+                <NavigationViewItem Content="CRUD Séances" x:Name="iSeanceCRUD" Icon="Folder"/>
+                <NavigationViewItem Content="Statistiques" x:Name="iStatistique" Icon="Folder"/>
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="mainFrame" Grid.Row="1" />
+        </NavigationView>
+    </Grid>
 </Window>
