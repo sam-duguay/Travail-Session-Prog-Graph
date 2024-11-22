@@ -28,4 +28,8 @@ La page d'activité contient le nom et la moyenne des notes d'évaluation de cha
 
 ### Partie publique
 
-1) Un adérent peut commencer sa session en entrant son numéro d'identification
+1) Un adhérent peut commencer sa session en entrant son numéro d'identification. Son nom apparait à l'écran. Il peut se déconnecter.
+2) L'utilisateur ne voit pas les section d'admin.
+3) Il peut cliquer sur une activité et choisir sa séance (combo-box?)
+4) UNE SEULE INSCRIPTION par activité.
+5) Il peut noter sur 5 une activité (donc la séance)
