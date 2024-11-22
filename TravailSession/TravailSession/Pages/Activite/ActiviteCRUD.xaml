@@ -7,9 +7,59 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:Classes="using:TravailSession.Classes">
+    <!-- Pour pouvoir bind la classe -->
 
-    <Grid>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Menu de gestion des activités" FontSize="32" FontWeight="Bold"/>
+        </StackPanel>
+
+        
+        <!-- La barre en haut avec les boutons d'ajout et de recherche -->
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
+            <Button x:Name="btn_ajout" Content="Ajouter une activité"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,20,0,0">
+            <Button x:Name="btn_recherche">
+                <SymbolIcon Symbol="Find"></SymbolIcon>
+            </Button>
+            <TextBox x:Name="tbx_recherche" PlaceholderText="Rechercher" Width="200"/>
+        </StackPanel>
+        
+        
+        <!-- ListView qui contiendra les éléments de la liste -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="15">
+            <ListView x:Name="lv_activite" Height="1000">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="Classes:ActiviteClasse">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Nom}"/>
+                            <TextBlock Text="{x:Bind Type}"/>
+                            <TextBlock Text="{x:Bind CoutOrganisationClient}"/>
+                            <TextBlock Text="{x:Bind PrixVenteClient}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        
+        
+        
 
     </Grid>
 </Page>
