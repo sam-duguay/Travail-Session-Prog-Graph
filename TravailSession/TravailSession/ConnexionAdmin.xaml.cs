@@ -18,11 +18,22 @@ using Windows.Foundation.Collections;
 
 namespace TravailSession
 {
-    public sealed partial class ConnexionAdmin : UserControl
+    public sealed partial class ConnexionAdmin : ContentDialog
     {
-        public ConnexionAdmin()
+        public ConnexionAdmin(string statut)
         {
             this.InitializeComponent();
+            if (statut == "admin")
+            {
+
+            }
+            else
+            {
+                pwd_user.Visibility = Visibility.Collapsed;
+            }
         }
+
+    
+
     }
 }

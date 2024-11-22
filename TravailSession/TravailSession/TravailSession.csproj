@@ -13,6 +13,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="ConnexionAdmin.xaml" />
     <None Remove="Pages\AccueilActivite.xaml" />
     <None Remove="Pages\Activite\ActiviteC.xaml" />
     <None Remove="Pages\Activite\ActiviteCRUD.xaml" />
@@ -53,6 +54,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ConnexionAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Statistique.xaml">

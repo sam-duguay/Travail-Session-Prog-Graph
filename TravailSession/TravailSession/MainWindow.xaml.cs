@@ -31,8 +31,11 @@ namespace TravailSession
             mainFrame.Navigate(typeof(AccueilActivite));
         }
 
+   
+        
 
-        private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+
+        private async void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = (NavigationViewItem)args.SelectedItem;
 
@@ -56,9 +59,51 @@ namespace TravailSession
                 case "iStatistique":
                     mainFrame.Navigate(typeof(Statistique));
                     break;
+
+                case "iLoginAdmin":
+                    connexionAdmin();
+                    mainFrame.Navigate(typeof(AccueilActivite));
+                    navView.SelectedItem = iActivite; 
+                    break;
+                case "iLoginAdherent":
+                    connexionAdherent();
+                    mainFrame.Navigate(typeof(AccueilActivite));
+                    navView.SelectedItem = iActivite;
+                    break;
+
                 default:
+
+
                     break;
             }
         }
+
+        public async void connexionAdmin()
+        {
+            ConnexionAdmin dialog = new ConnexionAdmin("admin");
+            dialog.XamlRoot = mainFrame.XamlRoot;
+            dialog.Title = "Authentification Admin";
+            dialog.PrimaryButtonText = "Se connecter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+        public async void connexionAdherent()
+        {
+            ConnexionAdmin dialog = new ConnexionAdmin("adherent");
+            dialog.XamlRoot = mainFrame.XamlRoot;
+            dialog.Title = "Authentification Adhérent";
+            dialog.PrimaryButtonText = "Se connecter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+        }
+
+
+
+
     }
 }
