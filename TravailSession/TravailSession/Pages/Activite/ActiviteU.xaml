@@ -20,7 +20,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="0, 0, 0, 30">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="0, 0, 0, 30">
             <TextBlock Text="Menu de modification d'une activité" FontSize="32" FontWeight="Bold"/>
         </StackPanel>
 
@@ -45,9 +45,10 @@
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="1">
-            <Button FontSize="20">
-                Ajouter
+            <Button x:Name="btn_modif" FontSize="20" Click="btn_modif_Click">
+                Modifier
             </Button>
+            <TextBlock x:Name="tbl_rentable" Foreground="DarkRed"/>
         </StackPanel>
 
     </Grid>

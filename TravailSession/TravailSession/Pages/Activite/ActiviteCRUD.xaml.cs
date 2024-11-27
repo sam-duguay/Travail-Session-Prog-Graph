@@ -35,17 +35,10 @@ namespace TravailSession.Pages.Activite
             //***EXEMPLE DE LISTVIEW pour voir l'affichage***
             ObservableCollection<ActiviteClasse> liste = new ObservableCollection<ActiviteClasse>();
 
-            liste.Add(new ActiviteClasse("test", "escalade", 50, 100));
-            liste.Add(new ActiviteClasse("test1", "gym", 50, 100));
-            liste.Add(new ActiviteClasse("test2", "yoga", 50, 100));
-            liste.Add(new ActiviteClasse("test", "escalade", 50, 100));
-            liste.Add(new ActiviteClasse("test1", "gym", 50, 100));
-            liste.Add(new ActiviteClasse("test2", "yoga", 50, 100));
-            liste.Add(new ActiviteClasse("test", "escalade", 50, 100));
-            liste.Add(new ActiviteClasse("test1", "gym", 50, 100));
-            liste.Add(new ActiviteClasse("test2", "yoga", 50, 100));
+            //Initialise le singleton
+            SingletonActivite.getInstance().getListe();
 
-            lv_activite.ItemsSource = liste;
+            lv_activite.ItemsSource = SingletonActivite.getInstance().Liste;
         }
 
 
@@ -69,8 +62,10 @@ namespace TravailSession.Pages.Activite
             Button button = sender as Button;
             ActiviteClasse activite = button.DataContext as ActiviteClasse;
 
-            //Envoie l'objet de la liste à la page suivante
-            this.Frame.Navigate(typeof(ActiviteU), activite);
+            int index = SingletonActivite.getInstance().getListe().IndexOf(activite);
+
+            //Envoie l'index de l'objet à modifier
+            this.Frame.Navigate(typeof(ActiviteU), index);
         }
 
         //Supprime un élément de la listview
@@ -79,7 +74,9 @@ namespace TravailSession.Pages.Activite
             Button button = sender as Button;
             ActiviteClasse activite = button.DataContext as ActiviteClasse;
 
-            //TODO:Faire le reste pour supprimer
+            int index = SingletonActivite.getInstance().getListe().IndexOf(activite);
+
+            SingletonActivite.getInstance().supprimerActivite(index);
         }
     }
 }

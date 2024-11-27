@@ -21,7 +21,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="0, 0, 0, 30">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="0, 0, 0, 30">
             <TextBlock Text="Menu d'ajout d'une activité" FontSize="32" FontWeight="Bold"/>
         </StackPanel>
 
@@ -46,9 +46,10 @@
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="1">
-            <Button FontSize="20">
+            <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click">
                 Ajouter
             </Button>
+            <TextBlock x:Name="tbl_rentable" Foreground="DarkRed"/>
         </StackPanel>
         
     </Grid>
