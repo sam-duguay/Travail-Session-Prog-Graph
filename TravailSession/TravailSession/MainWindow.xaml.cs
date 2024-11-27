@@ -17,6 +17,7 @@ using TravailSession.Pages;
 using TravailSession.Pages.Activite;
 using TravailSession.Pages.Adherent;
 using TravailSession.Pages.Seance;
+using TravailSession.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,6 +30,20 @@ namespace TravailSession
         {
             this.InitializeComponent();
             mainFrame.Navigate(typeof(AccueilActivite));
+
+
+            //Test d'initialisation de singleton
+            SingletonActivite.getInstance().getListe();
+
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
         }
 
    
