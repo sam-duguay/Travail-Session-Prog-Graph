@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 //Pour accèder au dossier classes
 using TravailSession.Classes;
 using System.Collections.ObjectModel;
+using TravailSession.Pages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,7 +32,7 @@ namespace TravailSession.Pages.Activite
             this.InitializeComponent();
 
 
-            //***EXEMPLE DE LISTVIEW***
+            //***EXEMPLE DE LISTVIEW pour voir l'affichage***
             ObservableCollection<ActiviteClasse> liste = new ObservableCollection<ActiviteClasse>();
 
             liste.Add(new ActiviteClasse("test", "escalade", 50, 100));
@@ -45,8 +46,40 @@ namespace TravailSession.Pages.Activite
             liste.Add(new ActiviteClasse("test2", "yoga", 50, 100));
 
             lv_activite.ItemsSource = liste;
+        }
 
 
+        //Navigue vers la page d'ajout
+        private void btn_ajout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ActiviteC));
+        }
+
+
+        //Fait une recherche parmis les éléments de la listview
+        private void btn_recherche_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        //Amène l'utilisateur au formulaire de modification de l'activité
+        private void btn_modifier_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            ActiviteClasse activite = button.DataContext as ActiviteClasse;
+
+            //Envoie l'objet de la liste à la page suivante
+            this.Frame.Navigate(typeof(ActiviteU), activite);
+        }
+
+        //Supprime un élément de la listview
+        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            ActiviteClasse activite = button.DataContext as ActiviteClasse;
+
+            //TODO:Faire le reste pour supprimer
         }
     }
 }
