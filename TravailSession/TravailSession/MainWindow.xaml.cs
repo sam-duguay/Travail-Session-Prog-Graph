@@ -99,6 +99,8 @@ namespace TravailSession
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Close;
 
+          
+
             ContentDialogResult resultat = await dialog.ShowAsync();
         }
 
