@@ -14,7 +14,7 @@
             IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Les activités" x:Name="iActivite" Icon="List"/>
-                <NavigationViewItemHeader Content="Menu administrateur"/>
+                <NavigationViewItemHeader Content="Menu administrateur" x:Name="imenu"/>
                 <NavigationViewItem Content="CRUD Activité" x:Name="iActiviteCRUD" Icon="Folder"/>
                 <NavigationViewItem Content="CRUD Adhérent" x:Name="iAdherentCRUD" Icon="Folder"/>
                 <NavigationViewItem Content="CRUD Séances" x:Name="iSeanceCRUD" Icon="Folder"/>

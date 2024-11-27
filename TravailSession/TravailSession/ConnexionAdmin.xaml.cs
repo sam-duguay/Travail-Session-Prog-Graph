@@ -13,8 +13,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
+using TravailSession.Pages.Activite;
+using TravailSession.Pages.Adherent;
+using TravailSession.Pages.Seance;
+using TravailSession.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -24,6 +29,7 @@ namespace TravailSession
     public sealed partial class ConnexionAdmin : ContentDialog
     {
         Boolean admin;
+        
 
         public ConnexionAdmin(string statut)
         {
@@ -65,6 +71,7 @@ namespace TravailSession
                         args.Cancel = true;
                         tbl_validation_pwd.Text = "Le mot de passe est vide";
                     }
+                   
 
                 }
 
@@ -102,6 +109,7 @@ namespace TravailSession
             else
             {
                 args.Cancel = false;
+              
             }
 
         }

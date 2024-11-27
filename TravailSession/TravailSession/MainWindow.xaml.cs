@@ -31,6 +31,12 @@ namespace TravailSession
             this.InitializeComponent();
             mainFrame.Navigate(typeof(AccueilActivite));
 
+            iActiviteCRUD.Visibility = Visibility.Collapsed;
+            iAdherentCRUD.Visibility = Visibility.Collapsed;
+            iSeanceCRUD.Visibility = Visibility.Collapsed;
+            iStatistique.Visibility = Visibility.Collapsed;
+            imenu.Visibility = Visibility.Collapsed;
+
 
             //Test d'initialisation de singleton
             SingletonActivite.getInstance().getListe();
@@ -103,6 +109,18 @@ namespace TravailSession
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+            if (resultat.ToString() == "Primary")
+            {
+                iActiviteCRUD.Visibility = Visibility.Visible;
+                iAdherentCRUD.Visibility = Visibility.Visible;
+                iSeanceCRUD.Visibility = Visibility.Visible;
+                iStatistique.Visibility = Visibility.Visible;
+                imenu.Visibility = Visibility.Visible;
+            }
+            
+               
+            
+
         }
 
         public async void connexionAdherent()
@@ -117,6 +135,15 @@ namespace TravailSession
           
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat.ToString() == "Primary")
+            {
+                iActiviteCRUD.Visibility = Visibility.Collapsed;
+                iAdherentCRUD.Visibility = Visibility.Collapsed;
+                iSeanceCRUD.Visibility = Visibility.Collapsed;
+                iStatistique.Visibility = Visibility.Collapsed;
+                imenu.Visibility = Visibility.Collapsed;
+            }
         }
 
 
