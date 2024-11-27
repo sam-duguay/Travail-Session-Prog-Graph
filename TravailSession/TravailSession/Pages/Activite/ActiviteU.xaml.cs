@@ -122,11 +122,8 @@ namespace TravailSession.Pages.Activite
                 //Modification de l'activité dans la BD avec l'aide d'un singleton
                 SingletonActivite.getInstance().modifierActivite(index, new ActiviteClasse(nom, type, Double.Parse(cout), Double.Parse(prix)));
 
-                //Vide les champs pour préparer l'ajout d'une nouvelle activité
-                tbx_nom.Text = "";
-                tbx_type.Text = "";
-                tbx_cout.Text = "";
-                tbx_prix.Text = "";
+                //Redirige à la page précédente
+                this.Frame.GoBack();
 
 
             }
