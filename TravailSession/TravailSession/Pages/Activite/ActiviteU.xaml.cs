@@ -129,8 +129,9 @@ namespace TravailSession.Pages.Activite
                 }
 
                 //Modification de l'activité dans la BD avec l'aide d'un singleton
+
                 SingletonActivite.getInstance().supprimerActivite(activiteModif);
-                //SingletonActivite.getInstance().modifierActivite(activiteModif, new ActiviteClasse(nom, type, Double.Parse(cout), Double.Parse(prix)));
+                SingletonActivite.getInstance().ajouterActivite(nom, type, Double.Parse(cout), Double.Parse(prix));
 
                 //Redirige à la page précédente
                 this.Frame.GoBack();
@@ -147,6 +148,7 @@ namespace TravailSession.Pages.Activite
             tbl_erreur_type.Text = "";
             tbl_erreur_cout.Text = "";
             tbl_erreur_prix.Text = "";
+            tbl_rentable.Text = "";
         }
     }
 }

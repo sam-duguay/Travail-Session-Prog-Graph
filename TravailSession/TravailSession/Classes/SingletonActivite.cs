@@ -125,18 +125,6 @@ namespace TravailSession.Classes
         }
 
 
-        public void modifierActivite(ActiviteClasse activiteVielle, ActiviteClasse activiteNouvelle)
-        {
-
-            supprimerActivite(activiteVielle);
-            ajouterActivite(activiteNouvelle.Nom, activiteNouvelle.Type, activiteNouvelle.CoutOrganisationClient, activiteNouvelle.PrixVenteClient);
-
-            //Réinitialise la liste des activités
-            liste.Clear();
-            getActivites();
-        }
-
-
         public void supprimerActivite(ActiviteClasse activite)
         {
 

@@ -103,7 +103,9 @@ namespace TravailSession.Pages.Activite
             if (estValide)
             {
 
-                if(Double.Parse(cout) > Double.Parse(prix))
+                tbl_rentable.Text = "L'activité a été ajoutée!";
+
+                if (Double.Parse(cout) > Double.Parse(prix))
                 {
                     tbl_rentable.Text = "Attention! L'activité est a été ajoutée, mais celle-ci ne sera pas rentable.";
                 }
