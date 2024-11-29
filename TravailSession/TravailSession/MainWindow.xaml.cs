@@ -31,19 +31,13 @@ namespace TravailSession
             this.InitializeComponent();
             mainFrame.Navigate(typeof(AccueilActivite));
 
-
-            //Test d'initialisation de singleton
+            //Initialisations des singlestons
             SingletonActivite.getInstance().getListe();
 
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
+
+            //Ajoute les activités au singleton
+            SingletonActivite.getInstance().getActivites();
+
         }
 
    

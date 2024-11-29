@@ -27,12 +27,23 @@ namespace TravailSession.Pages.Activite
         public ActiviteC()
         {
             this.InitializeComponent();
+
+            //Initialiser le combobox avec les catégories de la BD
+            cmb_type.Items.Clear();
+
+
+            foreach(string item in SingletonActivite.getInstance().getCategories())
+            {
+                cmb_type.Items.Add(item);
+            }
+
+            cmb_type.SelectedIndex = 0;
         }
 
         private void btn_ajout_Click(object sender, RoutedEventArgs e)
         {
             string nom = tbx_nom.Text;
-            string type = tbx_type.Text;
+            string type = cmb_type.SelectedItem as string;
             string cout = tbx_cout.Text;
             string prix = tbx_prix.Text;
 
@@ -98,11 +109,11 @@ namespace TravailSession.Pages.Activite
                 }
 
                 //Ajout de l'activité dans la BD avec l'aide d'un singleton
-                SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse(nom, type, Double.Parse(cout), Double.Parse(prix)));
+                SingletonActivite.getInstance().ajouterActivite(nom, type, Double.Parse(cout), Double.Parse(prix));
 
                 //Vide les champs pour préparer l'ajout d'une nouvelle activité
                 tbx_nom.Text = "";
-                tbx_type.Text = "";
+                cmb_type.SelectedIndex = 0;
                 tbx_cout.Text = "";
                 tbx_prix.Text = "";
 

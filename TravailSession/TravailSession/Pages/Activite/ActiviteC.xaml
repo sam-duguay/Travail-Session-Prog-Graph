@@ -30,8 +30,8 @@
             <TextBox x:Name="tbx_nom"/>
             <TextBlock x:Name="tbl_erreur_nom" Foreground="red"/>
 
-            <TextBlock Text="Type d'activité:" FontSize="20" Margin="0, 10, 0, 10"/>
-            <TextBox x:Name="tbx_type"/>
+            <TextBlock Text="Catégorie:" FontSize="20" Margin="0, 0, 0, 10"/>
+            <ComboBox x:Name="cmb_type" Width="300"/>
             <TextBlock x:Name="tbl_erreur_type" Foreground="red"/>
 
             <TextBlock Text="Le coût pour l'organisation:" FontSize="20" Margin="0, 10, 0, 10"/>
