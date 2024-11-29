@@ -23,6 +23,8 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Connexion Admin" x:Name="iLoginAdmin" Icon="Admin"/>
                 <NavigationViewItem Content="Connexion Adhérent" x:Name="iLoginAdherent" Icon="Account"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem  Content="Déconnexion" x:Name="iDeconnexion" Icon="Contact2"/>
             </NavigationView.MenuItems>
 
 

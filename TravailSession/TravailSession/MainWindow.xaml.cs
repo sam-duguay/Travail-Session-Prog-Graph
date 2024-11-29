@@ -36,6 +36,7 @@ namespace TravailSession
             iSeanceCRUD.Visibility = Visibility.Collapsed;
             iStatistique.Visibility = Visibility.Collapsed;
             imenu.Visibility = Visibility.Collapsed;
+            iDeconnexion.Visibility = Visibility.Collapsed;
 
 
             //Test d'initialisation de singleton
@@ -116,6 +117,7 @@ namespace TravailSession
                 iSeanceCRUD.Visibility = Visibility.Visible;
                 iStatistique.Visibility = Visibility.Visible;
                 imenu.Visibility = Visibility.Visible;
+                iDeconnexion.Visibility = Visibility.Visible;
             }
             
                
@@ -143,6 +145,7 @@ namespace TravailSession
                 iSeanceCRUD.Visibility = Visibility.Collapsed;
                 iStatistique.Visibility = Visibility.Collapsed;
                 imenu.Visibility = Visibility.Collapsed;
+                iDeconnexion.Visibility = Visibility.Visible;
             }
         }
 

@@ -19,6 +19,9 @@ using TravailSession.Pages.Seance;
 using TravailSession.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using TravailSession.Classes;
+using Windows.Media.Casting;
+using MySql.Data.MySqlClient;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,17 +31,24 @@ namespace TravailSession
 {
     public sealed partial class ConnexionAdmin : ContentDialog
     {
+        MySqlConnection _connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3; Uid=1073274;Pwd=1073274;");
         Boolean admin;
+        ConnexionClasse connexion = new ConnexionClasse(false);
+        
         
 
         public ConnexionAdmin(string statut)
         {
+            this.InitializeComponent();
+
+           
+           
             if (admin is true)
             {
                 statut = "admin";
             }
 
-            this.InitializeComponent();
+            
             if (statut == "admin")
             {
                 admin = true;
@@ -56,49 +66,109 @@ namespace TravailSession
             // avant la fermeture:
             if (args.Result == ContentDialogResult.Primary)
             {
-
                 //verifier si le mot de passe est vide ou non 
-                if (admin == true) 
-                { 
+                if (admin == true)
+                {
                     if (string.IsNullOrWhiteSpace(pwd_user.Password))
                     {
                         args.Cancel = true;
                         tbl_validation_pwd.Text = "Le mot de passe est vide";
-
                     }
                     if (string.IsNullOrEmpty(pwd_user.Password))
                     {
                         args.Cancel = true;
                         tbl_validation_pwd.Text = "Le mot de passe est vide";
                     }
-                   
+
+
+                    
+
+                        MySqlCommand cmd = new MySqlCommand();
+                        cmd.Connection = _connection;
+                        cmd.CommandText = $"SELECT * FROM administrateur WHERE nomAdmin like '{tbx_user.Text}' and mdp like '{pwd_user.Password}';";
+                        _connection.Open();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            Console.WriteLine("passer ici pour go");
+                            connexion = new ConnexionClasse(true, tbx_user.Text, pwd_user.Password);
+                            args.Cancel = false;
+                        }
+                        else
+                        {
+                            args.Cancel = true;
+                            tbl_validation_user.Text = "vous n'avez pas les droit administrateur";
+                        }
+                        reader.Close();
+                        _connection.Close();
+
+
 
                 }
 
-                
+                   else if (admin != true)
+                    {
+                        //prend la valeur du texte user
+                        string texte = tbx_user.Text;
+                        string expression = "^[a-zA-Z]{2}-[0-9]{4}-[0-9]{3}";
+
+                        //verifie sil fonction selon l'expression
+                        if (Regex.IsMatch(texte, expression))
+                        {
+                            tbl_validation_user.Text = "le format est respecter";
+                        }
+                        else
+                        {
+                            args.Cancel = true;
+                            tbl_validation_user.Text = "le format n'est pas respecter";
+                        }
+                        //verifier sil est vide ou non.
+                        if (string.IsNullOrWhiteSpace(tbx_user.Text))
+                        {
+                            args.Cancel = true;
+                            tbl_validation_user.Text = "le format n'est pas respecter";
+
+                        }
+
+                        MySqlCommand cmd2 = new MySqlCommand();
+                        cmd2.Connection = _connection;
+                        cmd2.CommandText = $"SELECT * FROM adherent WHERE idAdherent like '{tbx_user.Text}';";
+                        _connection.Open();
+                        MySqlDataReader reader2 = cmd2.ExecuteReader();
+
+                        if (reader2.Read())
+                        {
+                            Console.WriteLine("passer ici pour go");
+                            //connexion = new ConnexionClasse(true, tbx_user.Text, pwd_user.Pas);
+                            args.Cancel = false;
+                        }
+                        else
+                        {
+                            args.Cancel = true;
+                            tbl_validation_user.Text = "vous n'avez pas les droit administrateur";
+                        }
+                        reader2.Close();
+                        _connection.Close();
 
 
-                //prend la valeur du texte user
-                string texte = tbx_user.Text;
-                string expression = "^[a-zA-Z]{2}-[0-9]{4}-[0-9]{3}";
-                
-                //verifie sil fonction selon l'expression
-                if (Regex.IsMatch(texte, expression))
+                    
+
+
+
+
+
+
+                }
+                else 
                 {
-                    tbl_validation_user.Text = "le format est respecter";
+                    args.Cancel = false;
                 }
-                else
-                {
-                    args.Cancel = true;
-                    tbl_validation_user.Text = "le format n'est pas respecter";
-                }
-                //verifier sil est vide ou non.
-                if (string.IsNullOrWhiteSpace(tbx_user.Text))
-                {
-                    args.Cancel = true;
-                    tbl_validation_user.Text = "le format n'est pas respecter";
 
-                }
+
+
+
+
 
 
 
@@ -106,11 +176,9 @@ namespace TravailSession
 
 
             }
-            else
-            {
-                args.Cancel = false;
-              
-            }
+
+
+                
 
         }
     }
