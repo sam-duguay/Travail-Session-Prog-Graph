@@ -22,6 +22,7 @@ using Windows.Foundation.Collections;
 using TravailSession.Classes;
 using Windows.Media.Casting;
 using MySql.Data.MySqlClient;
+using WinRT;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -137,10 +138,15 @@ namespace TravailSession
                         _connection.Open();
                         MySqlDataReader reader2 = cmd2.ExecuteReader();
 
-                        if (reader2.Read())
-                        {
-                            Console.WriteLine("passer ici pour go");
-                            //connexion = new ConnexionClasse(true, tbx_user.Text, pwd_user.Pas);
+                    if (reader2.Read())
+                    {
+                      
+                        sessionAdherent.cree(new AdherentClasse(reader2["nomAdherent"].ToString(),
+                                                                    reader2["prenomAdherent"].ToString(),
+                                                                    reader2["adresse"].ToString(),
+                                                                    (DateTime)reader2["dateNais"],
+                                                                    (int)reader2["age"]
+                                                                    ));
                             args.Cancel = false;
                         }
                         else

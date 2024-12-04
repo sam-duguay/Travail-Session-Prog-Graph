@@ -18,6 +18,8 @@ using TravailSession.Pages.Activite;
 using TravailSession.Pages.Adherent;
 using TravailSession.Pages.Seance;
 using TravailSession.Classes;
+using MySql.Data.MySqlClient;
+using System.Data.Common;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +28,7 @@ namespace TravailSession
 {
     public sealed partial class MainWindow : Window
     {
+        MySqlConnection _connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3; Uid=1073274;Pwd=1073274;");
         public MainWindow()
         {
             this.InitializeComponent();
@@ -92,12 +95,41 @@ namespace TravailSession
                     mainFrame.Navigate(typeof(AccueilActivite));
                     navView.SelectedItem = iActivite;
                     break;
+                case "iDeconnexion":
+                    deconnexion();
+                    break;
 
                 default:
 
 
                     break;
             }
+        }
+
+        public void deconnexion(){
+            tbl_etat.Text = "Déconnecté";
+            iActiviteCRUD.Visibility = Visibility.Collapsed;
+            iAdherentCRUD.Visibility = Visibility.Collapsed;
+            iSeanceCRUD.Visibility = Visibility.Collapsed;
+            iStatistique.Visibility = Visibility.Collapsed;
+            imenu.Visibility = Visibility.Collapsed;
+            iDeconnexion.Visibility = Visibility.Collapsed;
+            iLoginAdmin.Visibility = Visibility.Visible;
+            iLoginAdherent.Visibility = Visibility.Visible;
+
+            sessionAdherent.deconnexion();
+            tbl_nom.Text = "";
+
+
+
+
+
+
+
+
+
+
+            //SingletonAdherent.cree(new AdherentClasse('nom', 'prenom',, 1990 - 12 - 1, 19);
         }
 
         public async void connexionAdmin()
@@ -107,7 +139,8 @@ namespace TravailSession
             dialog.Title = "Authentification Admin";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Close;
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            
 
             ContentDialogResult resultat = await dialog.ShowAsync();
             //gestion visibilité
@@ -136,8 +169,8 @@ namespace TravailSession
             dialog.Title = "Authentification Adhérent";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Close;
-
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            
           
 
             ContentDialogResult resultat = await dialog.ShowAsync();
@@ -152,6 +185,10 @@ namespace TravailSession
                 iDeconnexion.Visibility = Visibility.Visible;
                 iLoginAdmin.Visibility = Visibility.Collapsed;
                 iLoginAdherent.Visibility = Visibility.Collapsed;
+                tbl_etat.Text = "Utilisateur connecté";
+
+                tbl_nom.Text = sessionAdherent._Adherent.NomAdherent +" " +  sessionAdherent._Adherent.PrenomAdherent;
+
             }
         }
 

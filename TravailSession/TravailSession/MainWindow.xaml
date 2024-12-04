@@ -13,7 +13,12 @@
             SelectionChanged="navView_SelectionChanged"  IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False">
             <NavigationView.PaneCustomContent>
-                <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+                <StackPanel>
+                     <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_nom"/>
+                     <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_prenom"/>
+                     <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+                </StackPanel>
+               
             </NavigationView.PaneCustomContent>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Les activités" x:Name="iActivite" Icon="List"/>
