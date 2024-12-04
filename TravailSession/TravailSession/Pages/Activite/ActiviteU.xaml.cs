@@ -132,27 +132,11 @@ namespace TravailSession.Pages.Activite
                     tbl_rentable.Text = "Attention! L'activité est a été modifiée, mais celle-ci ne sera pas rentable.";
                 }
 
-                //Modification de l'activité dans la BD avec l'aide d'un singleton
 
-                //S'il n'y a aucune modif, on ne fait rien
-                //if(activiteModif.Nom.Equals(nom) && activiteModif.Type.Equals(type)
-                //    && activiteModif.CoutOrganisationClient == Double.Parse(cout) 
-                //    && activiteModif.PrixVenteClient == Double.Parse(prix))
-                //{
-                //    //Redirige à la page précédente
-                //    this.Frame.GoBack();
-                //}
-                //else
-                //{
+                SingletonActivite.getInstance().modifierActivite(activiteModif, nom, type, Double.Parse(cout), Double.Parse(prix));
 
-                    SingletonActivite.getInstance().modifierActivite(activiteModif, nom, type, Double.Parse(cout), Double.Parse(prix));
-
-                    //Redirige à la page précédente
-                    this.Frame.GoBack();
-                //}
-                
-
-
+                //Redirige à la page précédente
+                this.Frame.GoBack();
             }
 
         }

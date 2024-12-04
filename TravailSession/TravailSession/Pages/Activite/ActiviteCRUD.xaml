@@ -31,7 +31,7 @@
         <!-- La barre en haut avec les boutons d'ajout et de recherche -->
 
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
-            <Button x:Name="btn_ajout" Content="Ajouter une activité" Click="btn_ajout_Click"/>
+            <Button x:Name="btn_ajout" Content="Ajouter une activité" Click="btn_ajout_Click" FontWeight="Medium" FontSize="20"/>
         </StackPanel>
 
 

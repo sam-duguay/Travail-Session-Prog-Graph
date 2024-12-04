@@ -132,5 +132,11 @@ namespace TravailSession.Pages.Activite
             tbl_erreur_cout.Text = "";
             tbl_erreur_prix.Text = "";
         }
+
+        private void btn_retour_Click(object sender, RoutedEventArgs e)
+        {
+            //Redirige à la page précédente
+            this.Frame.GoBack();
+        }
     }
 }

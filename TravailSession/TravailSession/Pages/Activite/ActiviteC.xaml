@@ -21,7 +21,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="0, 0, 0, 30">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" Margin="0, 0, 0, 30">
             <TextBlock Text="Menu d'ajout d'une activité" FontSize="32" FontWeight="Bold"/>
         </StackPanel>
 
@@ -42,14 +42,17 @@
             <TextBox x:Name="tbx_prix"/>
             <TextBlock x:Name="tbl_erreur_prix" Foreground="red"/>
 
-            
-        </StackPanel>
-
-        <StackPanel Grid.Column="2" Grid.Row="1">
-            <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click">
+            <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click" HorizontalAlignment="Center">
                 Ajouter
             </Button>
             <TextBlock x:Name="tbl_rentable" Foreground="DarkRed"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <Button x:Name="btn_retour" HorizontalAlignment="Right" FontSize="20" Click="btn_retour_Click" FontWeight="Medium">
+                Retour au CRUD activité
+            </Button>
         </StackPanel>
         
     </Grid>

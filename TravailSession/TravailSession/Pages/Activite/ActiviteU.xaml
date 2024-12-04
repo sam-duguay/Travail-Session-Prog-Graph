@@ -41,14 +41,11 @@
             <TextBox x:Name="tbx_prix"/>
             <TextBlock x:Name="tbl_erreur_prix" Foreground="red"/>
 
-
-        </StackPanel>
-
-        <StackPanel Grid.Column="2" Grid.Row="1">
             <Button x:Name="btn_modif" FontSize="20" Click="btn_modif_Click">
                 Modifier
             </Button>
             <TextBlock x:Name="tbl_rentable" Foreground="DarkRed"/>
+
         </StackPanel>
 
     </Grid>
