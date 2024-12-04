@@ -91,10 +91,10 @@ namespace TravailSession.Classes
             return categories;
         }
 
-        
+
 
         //Va chercher une activité à une position X
-        public ActiviteClasse getActivite(int position) 
+        public ActiviteClasse getActivite(int position)
         {
             return liste[position];
         }
@@ -162,5 +162,45 @@ namespace TravailSession.Classes
             liste.Clear();
             getActivites();
         }
+
+
+        public void modifierActivite(ActiviteClasse activiteModif, string nom, string categorie, double coutOrganiser, double prixVente)
+        {
+            //Les clés primaires de l'ancienne activite
+            string oldNom = activiteModif.Nom;
+            string oldCategorie = activiteModif.Type;
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "UPDATE activite SET nomActivite=@nom, nomCategorie=@categorie, coutOrganiserClient=@cout, prixVenteClient=@prix WHERE nomActivite=@oldNom AND nomCategorie=@oldCategorie ";
+                commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@categorie", categorie);
+                commande.Parameters.AddWithValue("@cout", coutOrganiser);
+                commande.Parameters.AddWithValue("@prix", prixVente);
+                commande.Parameters.AddWithValue("@oldNom", oldNom);
+                commande.Parameters.AddWithValue("@oldCategorie", oldCategorie);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+            
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+            //Réinitialise la liste des activités
+            liste.Clear();
+            getActivites();
+        }
+
+
     }
 }

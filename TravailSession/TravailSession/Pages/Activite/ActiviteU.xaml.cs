@@ -135,21 +135,21 @@ namespace TravailSession.Pages.Activite
                 //Modification de l'activité dans la BD avec l'aide d'un singleton
 
                 //S'il n'y a aucune modif, on ne fait rien
-                if(activiteModif.Nom.Equals(nom) && activiteModif.Type.Equals(type)
-                    && activiteModif.CoutOrganisationClient == Double.Parse(cout) 
-                    && activiteModif.PrixVenteClient == Double.Parse(prix))
-                {
-                    //Redirige à la page précédente
-                    this.Frame.GoBack();
-                }
-                else
-                {
-                    SingletonActivite.getInstance().supprimerActivite(activiteModif);
-                    SingletonActivite.getInstance().ajouterActivite(nom, type, Double.Parse(cout), Double.Parse(prix));
+                //if(activiteModif.Nom.Equals(nom) && activiteModif.Type.Equals(type)
+                //    && activiteModif.CoutOrganisationClient == Double.Parse(cout) 
+                //    && activiteModif.PrixVenteClient == Double.Parse(prix))
+                //{
+                //    //Redirige à la page précédente
+                //    this.Frame.GoBack();
+                //}
+                //else
+                //{
+
+                    SingletonActivite.getInstance().modifierActivite(activiteModif, nom, type, Double.Parse(cout), Double.Parse(prix));
 
                     //Redirige à la page précédente
                     this.Frame.GoBack();
-                }
+                //}
                 
 
 
