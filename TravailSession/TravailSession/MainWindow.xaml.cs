@@ -106,7 +106,7 @@ namespace TravailSession
             dialog.Title = "Authentification Admin";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Close;
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
             //gestion visibilité
@@ -135,9 +135,9 @@ namespace TravailSession
             dialog.Title = "Authentification Adhérent";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Close;
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
-          
+
 
             ContentDialogResult resultat = await dialog.ShowAsync();
 

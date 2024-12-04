@@ -15,9 +15,9 @@
    
     <StackPanel>
         
-            <TextBox Header="Nom" x:Name="tbx_user" Margin="5" Text="aa-1344-123"/>
+            <TextBox Header="Nom" x:Name="tbx_user" Margin="5" Text="pdupont"/>
             <TextBlock x:Name="tbl_validation_user"/>
-            <PasswordBox Header="Mot de passe " x:Name="pwd_user" Margin="5" Password="12" />
+            <PasswordBox Header="Mot de passe " x:Name="pwd_user" Margin="5" Password="password123" />
             <TextBlock x:Name="tbl_validation_pwd"/>
         
     </StackPanel>

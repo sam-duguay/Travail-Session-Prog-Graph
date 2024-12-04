@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using TravailSession.Classes;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -56,6 +57,9 @@ namespace TravailSession.Pages.Activite
                 cmb_type.SelectedValue = activiteModif.Type;
                 tbx_cout.Text = activiteModif.CoutOrganisationClient.ToString();
                 tbx_prix.Text = activiteModif.PrixVenteClient.ToString();
+
+
+                Debug.WriteLine(activiteModif.ToString());
             }
         }
 
@@ -130,11 +134,23 @@ namespace TravailSession.Pages.Activite
 
                 //Modification de l'activité dans la BD avec l'aide d'un singleton
 
-                SingletonActivite.getInstance().supprimerActivite(activiteModif);
-                SingletonActivite.getInstance().ajouterActivite(nom, type, Double.Parse(cout), Double.Parse(prix));
+                //S'il n'y a aucune modif, on ne fait rien
+                if(activiteModif.Nom.Equals(nom) && activiteModif.Type.Equals(type)
+                    && activiteModif.CoutOrganisationClient == Double.Parse(cout) 
+                    && activiteModif.PrixVenteClient == Double.Parse(prix))
+                {
+                    //Redirige à la page précédente
+                    this.Frame.GoBack();
+                }
+                else
+                {
+                    SingletonActivite.getInstance().supprimerActivite(activiteModif);
+                    SingletonActivite.getInstance().ajouterActivite(nom, type, Double.Parse(cout), Double.Parse(prix));
 
-                //Redirige à la page précédente
-                this.Frame.GoBack();
+                    //Redirige à la page précédente
+                    this.Frame.GoBack();
+                }
+                
 
 
             }

@@ -103,20 +103,30 @@ namespace TravailSession.Classes
 
         public void ajouterActivite(string nom, string categorie, double coutOrganiser, double prixVente)
         {
-            //Procédure stockée
-            MySqlCommand commande = new MySqlCommand("creation_Activite");
-            commande.Connection = con;
-            commande.CommandType = System.Data.CommandType.StoredProcedure;
-            commande.Parameters.AddWithValue("nom", nom);
-            commande.Parameters.AddWithValue("categorie", categorie);
-            commande.Parameters.AddWithValue("coutOrganiser", coutOrganiser);
-            commande.Parameters.AddWithValue("prixVente", prixVente);
+            try
+            {
+                //Procédure stockée
+                MySqlCommand commande = new MySqlCommand("creation_Activite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("nom", nom);
+                commande.Parameters.AddWithValue("categorie", categorie);
+                commande.Parameters.AddWithValue("coutOrganiser", coutOrganiser);
+                commande.Parameters.AddWithValue("prixVente", prixVente);
 
-            con.Open();
-            commande.Prepare();
-            int i = commande.ExecuteNonQuery();
+                con.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
 
 
             //Réinitialise la liste des activités
@@ -131,10 +141,11 @@ namespace TravailSession.Classes
             try
             {
                 string nom = activite.Nom;
+                string categorie = activite.Type;
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "DELETE FROM activite WHERE nomActivite = '" + nom + "'";
+                commande.CommandText = "DELETE FROM activite WHERE nomActivite = '" + nom + "' AND nomCategorie= '" + categorie + "'";
                 con.Open();
                 int i = commande.ExecuteNonQuery();
 
