@@ -12,6 +12,9 @@
         <NavigationView PaneDisplayMode="Top" PaneTitle="Menu" x:Name="navView" IsBackEnabled="False"
             SelectionChanged="navView_SelectionChanged"  IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False">
+            <NavigationView.PaneCustomContent>
+                <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+            </NavigationView.PaneCustomContent>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Les activités" x:Name="iActivite" Icon="List"/>
                 <NavigationViewItemHeader Content="Menu administrateur" x:Name="imenu"/>

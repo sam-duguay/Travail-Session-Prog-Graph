@@ -110,6 +110,7 @@ namespace TravailSession
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+            //gestion visibilité
             if (resultat.ToString() == "Primary")
             {
                 iActiviteCRUD.Visibility = Visibility.Visible;
@@ -118,6 +119,9 @@ namespace TravailSession
                 iStatistique.Visibility = Visibility.Visible;
                 imenu.Visibility = Visibility.Visible;
                 iDeconnexion.Visibility = Visibility.Visible;
+                iLoginAdmin.Visibility = Visibility.Collapsed;
+                iLoginAdherent.Visibility = Visibility.Collapsed;
+                tbl_etat.Text = "Admin connecté";
             }
             
                
@@ -146,6 +150,8 @@ namespace TravailSession
                 iStatistique.Visibility = Visibility.Collapsed;
                 imenu.Visibility = Visibility.Collapsed;
                 iDeconnexion.Visibility = Visibility.Visible;
+                iLoginAdmin.Visibility = Visibility.Collapsed;
+                iLoginAdherent.Visibility = Visibility.Collapsed;
             }
         }
 
