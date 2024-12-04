@@ -46,13 +46,6 @@ namespace TravailSession.Pages.Activite
         }
 
 
-        //Fait une recherche parmis les éléments de la listview
-        private void btn_recherche_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
         //Amène l'utilisateur au formulaire de modification de l'activité
         private void btn_modifier_Click(object sender, RoutedEventArgs e)
         {

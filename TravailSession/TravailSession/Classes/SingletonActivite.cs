@@ -151,6 +151,5 @@ namespace TravailSession.Classes
             liste.Clear();
             getActivites();
         }
-
     }
 }
