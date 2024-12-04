@@ -7,9 +7,110 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:Classes="using:TravailSession.Classes">
 
-    <Grid>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Menu de gestion des séances" FontSize="32" FontWeight="Bold"/>
+        </StackPanel>
+
+
+        <!-- La barre en haut avec les boutons d'ajout et de recherche -->
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
+            <Button x:Name="btn_ajout" Content="Ajouter une activité" Click="btn_ajout_Click" FontWeight="Medium" FontSize="20"/>
+        </StackPanel>
+
+
+
+        <!-- ListView qui contiendra les éléments de la liste -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="15" HorizontalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Margin="10, 0, 85, 0" >
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Id" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 225, 0">
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Activité" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 100, 0" >
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Date" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 50, 0" >
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Heure" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 100, 0">
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Places disponibles" />
+                </StackPanel>
+                
+                
+
+
+            </StackPanel>
+
+            <ListView x:Name="lv_seance" Height="1000">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="Classes:SeanceClasse">
+                        <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
+
+                            <StackPanel Margin="0, 0, 70, 0" Width="35">
+                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind Id}" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 0, 0, 0" Width="300" Orientation="Horizontal">
+                                <TextBlock FontSize="25" FontWeight="SemiBold" Text="{x:Bind NomActivite}"/>
+                                <TextBlock FontSize="25" FontWeight="SemiBold" Text="("/>
+                                <TextBlock FontSize="25" FontWeight="SemiBold" Text="{x:Bind TypeActivite}"/>
+                                <TextBlock FontSize="25" FontWeight="SemiBold" Text=")"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 6, 90, 0" Width="100">
+                                <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind DateSeance}" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 6, 0, 0" Width="210" Orientation="Horizontal">
+                                <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind HeureFormatte}" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 6, 0, 0" Width="180" Orientation="Horizontal">
+                                <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind NbPlaceDispo}" />
+                            </StackPanel>
+
+                            
+
+                            <Button x:Name="btn_modifier" Width="100" Click="btn_modifier_Click">
+                                <SymbolIcon Symbol="Edit"/>
+                            </Button>
+                            <Button x:Name="btn_supprimer" Foreground="red" Margin="0, 0, 100, 0" Width="100" Click="btn_supprimer_Click">
+                                <SymbolIcon Symbol="Delete"/>
+                            </Button>
+
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+
+
 
     </Grid>
 </Page>

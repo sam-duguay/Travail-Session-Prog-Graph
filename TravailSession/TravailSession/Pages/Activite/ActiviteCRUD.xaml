@@ -65,7 +65,7 @@
                     <DataTemplate x:DataType="Classes:ActiviteClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
                             
-                            <StackPanel Margin="0, 0, 100, 0" Width="200">
+                            <StackPanel Margin="0, 0, 80, 0" Width="220">
                                 <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind Nom}" />
                             </StackPanel>
 

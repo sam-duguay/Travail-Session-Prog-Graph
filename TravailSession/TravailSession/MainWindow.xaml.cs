@@ -42,13 +42,15 @@ namespace TravailSession
             iDeconnexion.Visibility = Visibility.Collapsed;
 
 
-            //Test d'initialisation de singleton
 
+            //Initialisation des singleton
             SingletonActivite.getInstance().getListe();
+            SingletonSeance.getInstance().getListe();
 
 
             //Ajoute les activités au singleton
             SingletonActivite.getInstance().getActivites();
+            SingletonSeance.getInstance().getSeances();
 
         }
 
