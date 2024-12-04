@@ -12,6 +12,10 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+//Pour accèder au dossier classes
+using TravailSession.Classes;
+using System.Collections.ObjectModel;
+using TravailSession.Pages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +30,53 @@ namespace TravailSession.Pages.Activite
         public ActiviteCRUD()
         {
             this.InitializeComponent();
+
+
+            //***EXEMPLE DE LISTVIEW pour voir l'affichage***
+            ObservableCollection<ActiviteClasse> liste = new ObservableCollection<ActiviteClasse>();
+
+            //Initialise le singleton
+            SingletonActivite.getInstance().getListe();
+
+            lv_activite.ItemsSource = SingletonActivite.getInstance().Liste;
+        }
+
+
+        //Navigue vers la page d'ajout
+        private void btn_ajout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ActiviteC));
+        }
+
+
+        //Fait une recherche parmis les éléments de la listview
+        private void btn_recherche_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        //Amène l'utilisateur au formulaire de modification de l'activité
+        private void btn_modifier_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            ActiviteClasse activite = button.DataContext as ActiviteClasse;
+
+            int index = SingletonActivite.getInstance().getListe().IndexOf(activite);
+
+            //Envoie l'index de l'objet à modifier
+            this.Frame.Navigate(typeof(ActiviteU), index);
+        }
+
+        //Supprime un élément de la listview
+        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            ActiviteClasse activite = button.DataContext as ActiviteClasse;
+
+            int index = SingletonActivite.getInstance().getListe().IndexOf(activite);
+
+            SingletonActivite.getInstance().supprimerActivite(index);
         }
     }
 }

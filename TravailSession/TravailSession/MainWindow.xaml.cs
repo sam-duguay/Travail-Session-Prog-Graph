@@ -17,6 +17,7 @@ using TravailSession.Pages;
 using TravailSession.Pages.Activite;
 using TravailSession.Pages.Adherent;
 using TravailSession.Pages.Seance;
+using TravailSession.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,10 +30,34 @@ namespace TravailSession
         {
             this.InitializeComponent();
             mainFrame.Navigate(typeof(AccueilActivite));
+
+            iActiviteCRUD.Visibility = Visibility.Collapsed;
+            iAdherentCRUD.Visibility = Visibility.Collapsed;
+            iSeanceCRUD.Visibility = Visibility.Collapsed;
+            iStatistique.Visibility = Visibility.Collapsed;
+            imenu.Visibility = Visibility.Collapsed;
+            iDeconnexion.Visibility = Visibility.Collapsed;
+
+
+            //Test d'initialisation de singleton
+            SingletonActivite.getInstance().getListe();
+
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
+            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
         }
 
+   
+        
 
-        private void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+
+        private async void navView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = (NavigationViewItem)args.SelectedItem;
 
@@ -56,9 +81,82 @@ namespace TravailSession
                 case "iStatistique":
                     mainFrame.Navigate(typeof(Statistique));
                     break;
+
+                case "iLoginAdmin":
+                    connexionAdmin();
+                    mainFrame.Navigate(typeof(AccueilActivite));
+                    navView.SelectedItem = iActivite; 
+                    break;
+                case "iLoginAdherent":
+                    connexionAdherent();
+                    mainFrame.Navigate(typeof(AccueilActivite));
+                    navView.SelectedItem = iActivite;
+                    break;
+
                 default:
+
+
                     break;
             }
         }
+
+        public async void connexionAdmin()
+        {
+            ConnexionAdmin dialog = new ConnexionAdmin("admin");
+            dialog.XamlRoot = mainFrame.XamlRoot;
+            dialog.Title = "Authentification Admin";
+            dialog.PrimaryButtonText = "Se connecter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            //gestion visibilité
+            if (resultat.ToString() == "Primary")
+            {
+                iActiviteCRUD.Visibility = Visibility.Visible;
+                iAdherentCRUD.Visibility = Visibility.Visible;
+                iSeanceCRUD.Visibility = Visibility.Visible;
+                iStatistique.Visibility = Visibility.Visible;
+                imenu.Visibility = Visibility.Visible;
+                iDeconnexion.Visibility = Visibility.Visible;
+                iLoginAdmin.Visibility = Visibility.Collapsed;
+                iLoginAdherent.Visibility = Visibility.Collapsed;
+                tbl_etat.Text = "Admin connecté";
+            }
+            
+               
+            
+
+        }
+
+        public async void connexionAdherent()
+        {
+            ConnexionAdmin dialog = new ConnexionAdmin("adherent");
+            dialog.XamlRoot = mainFrame.XamlRoot;
+            dialog.Title = "Authentification Adhérent";
+            dialog.PrimaryButtonText = "Se connecter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+          
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat.ToString() == "Primary")
+            {
+                iActiviteCRUD.Visibility = Visibility.Collapsed;
+                iAdherentCRUD.Visibility = Visibility.Collapsed;
+                iSeanceCRUD.Visibility = Visibility.Collapsed;
+                iStatistique.Visibility = Visibility.Collapsed;
+                imenu.Visibility = Visibility.Collapsed;
+                iDeconnexion.Visibility = Visibility.Visible;
+                iLoginAdmin.Visibility = Visibility.Collapsed;
+                iLoginAdherent.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
+
+
     }
 }

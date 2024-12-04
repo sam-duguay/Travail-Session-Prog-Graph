@@ -13,6 +13,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="ConnexionAdmin.xaml" />
     <None Remove="Pages\AccueilActivite.xaml" />
     <None Remove="Pages\Activite\ActiviteC.xaml" />
     <None Remove="Pages\Activite\ActiviteCRUD.xaml" />
@@ -41,7 +42,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -53,6 +54,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ConnexionAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Statistique.xaml">
