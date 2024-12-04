@@ -12,9 +12,12 @@
         <NavigationView PaneDisplayMode="Top" PaneTitle="Menu" x:Name="navView" IsBackEnabled="False"
             SelectionChanged="navView_SelectionChanged"  IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False">
+            <NavigationView.PaneCustomContent>
+                <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+            </NavigationView.PaneCustomContent>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Les activités" x:Name="iActivite" Icon="List"/>
-                <NavigationViewItemHeader Content="Menu administrateur"/>
+                <NavigationViewItemHeader Content="Menu administrateur" x:Name="imenu"/>
                 <NavigationViewItem Content="CRUD Activité" x:Name="iActiviteCRUD" Icon="Folder"/>
                 <NavigationViewItem Content="CRUD Adhérent" x:Name="iAdherentCRUD" Icon="Folder"/>
                 <NavigationViewItem Content="CRUD Séances" x:Name="iSeanceCRUD" Icon="Folder"/>
@@ -23,6 +26,8 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Connexion Admin" x:Name="iLoginAdmin" Icon="Admin"/>
                 <NavigationViewItem Content="Connexion Adhérent" x:Name="iLoginAdherent" Icon="Account"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem  Content="Déconnexion" x:Name="iDeconnexion" Icon="Contact2"/>
             </NavigationView.MenuItems>
 
 

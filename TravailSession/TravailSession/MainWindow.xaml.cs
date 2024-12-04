@@ -31,11 +31,23 @@ namespace TravailSession
             this.InitializeComponent();
             mainFrame.Navigate(typeof(AccueilActivite));
 
+
             //Initialisations des singlestons
+
+            iActiviteCRUD.Visibility = Visibility.Collapsed;
+            iAdherentCRUD.Visibility = Visibility.Collapsed;
+            iSeanceCRUD.Visibility = Visibility.Collapsed;
+            iStatistique.Visibility = Visibility.Collapsed;
+            imenu.Visibility = Visibility.Collapsed;
+            iDeconnexion.Visibility = Visibility.Collapsed;
+
+
+            //Test d'initialisation de singleton
+
             SingletonActivite.getInstance().getListe();
 
 
-            //Ajoute les activitÈs au singleton
+            //Ajoute les activit√©s au singleton
             SingletonActivite.getInstance().getActivites();
 
         }
@@ -50,7 +62,7 @@ namespace TravailSession
 
             switch (item.Name)
             {
-                //Page que l'utilisateur voit par dÈfaut
+                //Page que l'utilisateur voit par d√©faut
                 case "iActivite":
                     mainFrame.Navigate(typeof(AccueilActivite));
                     break;
@@ -97,13 +109,30 @@ namespace TravailSession
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+            //gestion visibilit√©
+            if (resultat.ToString() == "Primary")
+            {
+                iActiviteCRUD.Visibility = Visibility.Visible;
+                iAdherentCRUD.Visibility = Visibility.Visible;
+                iSeanceCRUD.Visibility = Visibility.Visible;
+                iStatistique.Visibility = Visibility.Visible;
+                imenu.Visibility = Visibility.Visible;
+                iDeconnexion.Visibility = Visibility.Visible;
+                iLoginAdmin.Visibility = Visibility.Collapsed;
+                iLoginAdherent.Visibility = Visibility.Collapsed;
+                tbl_etat.Text = "Admin connect√©";
+            }
+            
+               
+            
+
         }
 
         public async void connexionAdherent()
         {
             ConnexionAdmin dialog = new ConnexionAdmin("adherent");
             dialog.XamlRoot = mainFrame.XamlRoot;
-            dialog.Title = "Authentification AdhÈrent";
+            dialog.Title = "Authentification Adh√©rent";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Close;
@@ -111,6 +140,18 @@ namespace TravailSession
           
 
             ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat.ToString() == "Primary")
+            {
+                iActiviteCRUD.Visibility = Visibility.Collapsed;
+                iAdherentCRUD.Visibility = Visibility.Collapsed;
+                iSeanceCRUD.Visibility = Visibility.Collapsed;
+                iStatistique.Visibility = Visibility.Collapsed;
+                imenu.Visibility = Visibility.Collapsed;
+                iDeconnexion.Visibility = Visibility.Visible;
+                iLoginAdmin.Visibility = Visibility.Collapsed;
+                iLoginAdherent.Visibility = Visibility.Collapsed;
+            }
         }
 
 
