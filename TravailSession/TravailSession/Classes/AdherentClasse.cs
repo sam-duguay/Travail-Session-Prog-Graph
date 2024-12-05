@@ -15,12 +15,20 @@ namespace TravailSession.Classes
         DateTimeOffset dateNais;
         int age;
 
+        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTimeOffset dateNais)
+        {
+            this.nomAdherent = nomAdherent;
+            this.prenomAdherent = prenomAdherent;
+            this.adresse = adresse;
+            this.dateNais = dateNais;
+        }
+
         public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTime dateNais, int age)
         {
             this.nomAdherent = nomAdherent;
             this.prenomAdherent = prenomAdherent;
             this.adresse = adresse;
-            this.dateNais = new DateTimeOffset();
+            this.dateNais = new DateTimeOffset(dateNais);
             this.age = age;
         }
 
