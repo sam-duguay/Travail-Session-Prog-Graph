@@ -30,7 +30,9 @@ namespace TravailSession.Pages.Seance
             this.InitializeComponent();
 
             //Initialise le singleton
+            SingletonSeance.getInstance().getSeances();
             SingletonSeance.getInstance().getListe();
+
 
             lv_seance.ItemsSource = SingletonSeance.getInstance().Liste;
         }
@@ -60,7 +62,7 @@ namespace TravailSession.Pages.Seance
             SeanceClasse seance = button.DataContext as SeanceClasse;
 
 
-            //SingletonSeance.getInstance().supprimerSeance(activite);
+            SingletonSeance.getInstance().supprimerSeance(seance);
         }
     }
 }

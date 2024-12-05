@@ -40,7 +40,8 @@ namespace TravailSession.Classes
             return liste;
         }
 
-        //TODO: va aller chercher les activités dans la BD
+
+
         public void getSeances()
         {
             liste.Clear();
@@ -73,28 +74,25 @@ namespace TravailSession.Classes
         public Collection<string> getActivite()
         {
 
-            // À CONSTRUIRE
-
-
-            Collection<string> categories = new Collection<string>();
+            Collection<string> activites = new Collection<string>();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "Select nomCategorie from categorie";
+            commande.CommandText = "Select nomActivite, nomCategorie from activite";
 
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
-                string categorie = r.GetString("nomCategorie");
+                string activite = r.GetString("nomActivite") + "/" + r.GetString("nomCategorie");
 
-                categories.Add(categorie);
+                activites.Add(activite);
             }
 
             r.Close();
             con.Close();
 
-            return categories;
+            return activites;
         }
 
 
@@ -107,22 +105,23 @@ namespace TravailSession.Classes
 
 
 
-        public void ajouterActivite(string nom, string categorie, double coutOrganiser, double prixVente)
+        public void ajouterSeance(string date, TimeSpan heure, int nbPlace, string nomActivite, string nomCategorie)
         {
             try
             {
                 //Procédure stockée
-                MySqlCommand commande = new MySqlCommand("creation_Activite");
+                MySqlCommand commande = new MySqlCommand("creation_Seance");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
-                commande.Parameters.AddWithValue("nom", nom);
-                commande.Parameters.AddWithValue("categorie", categorie);
-                commande.Parameters.AddWithValue("coutOrganiser", coutOrganiser);
-                commande.Parameters.AddWithValue("prixVente", prixVente);
+                commande.Parameters.AddWithValue("date", date);
+                commande.Parameters.AddWithValue("heure", heure);
+                commande.Parameters.AddWithValue("nbplaceDisponible", nbPlace);
+                commande.Parameters.AddWithValue("nom", nomActivite);
+                commande.Parameters.AddWithValue("type", nomCategorie);
 
                 con.Open();
                 commande.Prepare();
-                int i = commande.ExecuteNonQuery();
+                commande.ExecuteNonQuery();
 
                 con.Close();
             }
@@ -132,26 +131,22 @@ namespace TravailSession.Classes
                     con.Close();
             }
 
-
-
-
             //Réinitialise la liste des activités
             liste.Clear();
             getSeances();
         }
 
 
-        public void supprimerActivite(ActiviteClasse activite)
+        public void supprimerSeance(SeanceClasse seance)
         {
 
             try
             {
-                string nom = activite.Nom;
-                string categorie = activite.Type;
+                int id = seance.Id;
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "DELETE FROM activite WHERE nomActivite = '" + nom + "' AND nomCategorie= '" + categorie + "'";
+                commande.CommandText = "DELETE FROM seance WHERE idSeance = '" + id + "'";
                 con.Open();
                 int i = commande.ExecuteNonQuery();
 

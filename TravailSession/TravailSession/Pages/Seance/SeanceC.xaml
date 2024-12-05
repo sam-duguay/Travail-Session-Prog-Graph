@@ -40,7 +40,7 @@
             <TextBlock x:Name="tbl_erreur_date" Foreground="red"/>
 
             <TextBlock Text="L'heure de la séance" FontSize="20" Margin="0, 10, 0, 10"/>
-            <TimePicker x:Name="timepicker" ClockIdentifier="24HourClock"/>
+            <TimePicker x:Name="timepicker" ClockIdentifier="24HourClock" MinuteIncrement="15"/>
             <TextBlock x:Name="tbl_erreur_heure" Foreground="red"/>
 
 
@@ -51,7 +51,7 @@
             <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click" HorizontalAlignment="Center">
                 Ajouter
             </Button>
-            <TextBlock x:Name="tbl_rentable" Foreground="DarkRed"/>
+            <TextBlock x:Name="tbl_succes" Foreground="DarkRed"/>
 
         </StackPanel>
 
