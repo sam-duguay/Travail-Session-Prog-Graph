@@ -32,9 +32,6 @@ namespace TravailSession.Pages.Activite
             this.InitializeComponent();
 
 
-            //***EXEMPLE DE LISTVIEW pour voir l'affichage***
-            ObservableCollection<ActiviteClasse> liste = new ObservableCollection<ActiviteClasse>();
-
             //Initialise le singleton
             SingletonActivite.getInstance().getListe();
 
@@ -49,23 +46,14 @@ namespace TravailSession.Pages.Activite
         }
 
 
-        //Fait une recherche parmis les éléments de la listview
-        private void btn_recherche_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
         //Amène l'utilisateur au formulaire de modification de l'activité
         private void btn_modifier_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            ActiviteClasse activite = button.DataContext as ActiviteClasse;
-
-            int index = SingletonActivite.getInstance().getListe().IndexOf(activite);
+            ActiviteClasse activiteModif = button.DataContext as ActiviteClasse;
 
             //Envoie l'index de l'objet à modifier
-            this.Frame.Navigate(typeof(ActiviteU), index);
+            this.Frame.Navigate(typeof(ActiviteU), activiteModif);
         }
 
         //Supprime un élément de la listview
@@ -74,9 +62,8 @@ namespace TravailSession.Pages.Activite
             Button button = sender as Button;
             ActiviteClasse activite = button.DataContext as ActiviteClasse;
 
-            int index = SingletonActivite.getInstance().getListe().IndexOf(activite);
 
-            SingletonActivite.getInstance().supprimerActivite(index);
+            SingletonActivite.getInstance().supprimerActivite(activite);
         }
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using TravailSession.Classes;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,11 +27,21 @@ namespace TravailSession.Pages.Activite
     {
 
         //L'index de l'objet à modifier
-        int index = 0;
+        ActiviteClasse activiteModif = new ActiviteClasse("", "", 0, 0);
 
         public ActiviteU()
         {
             this.InitializeComponent();
+            //Initialiser le combobox avec les catégories de la BD
+            cmb_type.Items.Clear();
+
+
+            foreach (string item in SingletonActivite.getInstance().getCategories())
+            {
+                cmb_type.Items.Add(item);
+            }
+
+            cmb_type.SelectedIndex = 0;
         }
 
         //Reçoit l'activité lorsque la page se load
@@ -39,14 +50,16 @@ namespace TravailSession.Pages.Activite
             if(e.Parameter is not null)
             {
                 //Va chercher l'activité à modifier
-                index = (int)e.Parameter;
-                ActiviteClasse activite = SingletonActivite.getInstance().getActivite(index);
+                activiteModif = (ActiviteClasse)e.Parameter;
 
                 //Assignation des attributs de l'activité dans les champs approprié
-                tbx_nom.Text = activite.Nom;
-                tbx_type.Text = activite.Type;
-                tbx_cout.Text = activite.CoutOrganisationClient.ToString();
-                tbx_prix.Text = activite.PrixVenteClient.ToString();
+                tbx_nom.Text = activiteModif.Nom;
+                cmb_type.SelectedValue = activiteModif.Type;
+                tbx_cout.Text = activiteModif.CoutOrganisationClient.ToString();
+                tbx_prix.Text = activiteModif.PrixVenteClient.ToString();
+
+
+                Debug.WriteLine(activiteModif.ToString());
             }
         }
 
@@ -54,7 +67,7 @@ namespace TravailSession.Pages.Activite
         private void btn_modif_Click(object sender, RoutedEventArgs e)
         {
             string nom = tbx_nom.Text;
-            string type = tbx_type.Text;
+            string type = cmb_type.SelectedItem.ToString();
             string cout = tbx_cout.Text;
             string prix = tbx_prix.Text;
 
@@ -119,13 +132,11 @@ namespace TravailSession.Pages.Activite
                     tbl_rentable.Text = "Attention! L'activité est a été modifiée, mais celle-ci ne sera pas rentable.";
                 }
 
-                //Modification de l'activité dans la BD avec l'aide d'un singleton
-                SingletonActivite.getInstance().modifierActivite(index, new ActiviteClasse(nom, type, Double.Parse(cout), Double.Parse(prix)));
+
+                SingletonActivite.getInstance().modifierActivite(activiteModif, nom, type, Double.Parse(cout), Double.Parse(prix));
 
                 //Redirige à la page précédente
                 this.Frame.GoBack();
-
-
             }
 
         }
@@ -137,6 +148,7 @@ namespace TravailSession.Pages.Activite
             tbl_erreur_type.Text = "";
             tbl_erreur_cout.Text = "";
             tbl_erreur_prix.Text = "";
+            tbl_rentable.Text = "";
         }
     }
 }

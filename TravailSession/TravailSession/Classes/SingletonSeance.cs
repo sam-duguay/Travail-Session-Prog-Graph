@@ -1,122 +1,127 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravailSession.Classes;
-using MySql.Data.MySqlClient;
 
 namespace TravailSession.Classes
 {
-    internal class SingletonActivite
+    class SingletonSeance
     {
         MySqlConnection con;
-        ObservableCollection<ActiviteClasse> liste;
-        static SingletonActivite instance = null;
+        ObservableCollection<SeanceClasse> liste;
+        static SingletonSeance instance = null;
 
 
         //Propriété qui retourne la liste
-        internal ObservableCollection<ActiviteClasse> Liste { get { return liste; } }
+        internal ObservableCollection<SeanceClasse> Liste { get { return liste; } }
 
-        public SingletonActivite()
+        public SingletonSeance()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3;Uid=1477852;Pwd=1477852;");
-            liste = new ObservableCollection<ActiviteClasse>();
+            liste = new ObservableCollection<SeanceClasse>();
         }
 
-        public static SingletonActivite getInstance()
+        public static SingletonSeance getInstance()
         {
             if (instance == null)
             {
-                instance = new SingletonActivite();
+                instance = new SingletonSeance();
             }
 
             return instance;
         }
 
 
-        public ObservableCollection<ActiviteClasse> getListe()
+        public ObservableCollection<SeanceClasse> getListe()
         {
             return liste;
         }
 
-        //TODO: va aller chercher les activités dans la BD
-        public void getActivites()
+
+
+        public void getSeances()
         {
             liste.Clear();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "Select * from activite";
+            commande.CommandText = "Select * from seance";
 
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
-                string nom = r.GetString("nomActivite");
-                string categorie = r.GetString("nomCategorie");
-                double cout = r.GetDouble("coutOrganiserClient");
-                double prix = r.GetDouble("prixVenteClient");
+                int id = r.GetInt32("idSeance");
+                DateOnly date = DateOnly.FromDateTime(r.GetDateTime("dateSeance"));
+                DateTime heure = r.GetDateTime("heureOrganisation");
+                int nbPlace = r.GetInt32("nbPlaceDispo");
+                string activite = r.GetString("nomActivite");
+                string type = r.GetString("typeActivite");
 
-                ActiviteClasse activite = new ActiviteClasse(nom, categorie, cout, prix);
 
-                liste.Add(activite);
+                SeanceClasse seance = new SeanceClasse(id, date, heure, nbPlace, activite, type);
+
+                liste.Add(seance);
             }
 
             r.Close();
             con.Close();
         }
 
-        public Collection<string> getCategories()
+        public Collection<string> getActivite()
         {
-            Collection<string> categories = new Collection<string>();
+
+            Collection<string> activites = new Collection<string>();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
-            commande.CommandText = "Select nomCategorie from categorie";
+            commande.CommandText = "Select nomActivite, nomCategorie from activite";
 
             con.Open();
             MySqlDataReader r = commande.ExecuteReader();
             while (r.Read())
             {
-                string categorie = r.GetString("nomCategorie");
+                string activite = r.GetString("nomActivite") + "/" + r.GetString("nomCategorie");
 
-                categories.Add(categorie);
+                activites.Add(activite);
             }
 
             r.Close();
             con.Close();
 
-            return categories;
+            return activites;
         }
 
 
 
         //Va chercher une activité à une position X
-        public ActiviteClasse getActivite(int position)
-        {
-            return liste[position];
-        }
+        //public ActiviteClasse getActivite(int position)
+        //{
+        //    //return liste[position];
+        //}
 
 
 
-        public void ajouterActivite(string nom, string categorie, double coutOrganiser, double prixVente)
+        public void ajouterSeance(string date, TimeSpan heure, int nbPlace, string nomActivite, string nomCategorie)
         {
             try
             {
                 //Procédure stockée
-                MySqlCommand commande = new MySqlCommand("creation_Activite");
+                MySqlCommand commande = new MySqlCommand("creation_Seance");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
-                commande.Parameters.AddWithValue("nom", nom);
-                commande.Parameters.AddWithValue("categorie", categorie);
-                commande.Parameters.AddWithValue("coutOrganiser", coutOrganiser);
-                commande.Parameters.AddWithValue("prixVente", prixVente);
+                commande.Parameters.AddWithValue("date", date);
+                commande.Parameters.AddWithValue("heure", heure);
+                commande.Parameters.AddWithValue("nbplaceDisponible", nbPlace);
+                commande.Parameters.AddWithValue("nom", nomActivite);
+                commande.Parameters.AddWithValue("type", nomCategorie);
 
                 con.Open();
                 commande.Prepare();
-                int i = commande.ExecuteNonQuery();
+                commande.ExecuteNonQuery();
 
                 con.Close();
             }
@@ -126,26 +131,22 @@ namespace TravailSession.Classes
                     con.Close();
             }
 
-
-
-
             //Réinitialise la liste des activités
             liste.Clear();
-            getActivites();
+            getSeances();
         }
 
 
-        public void supprimerActivite(ActiviteClasse activite)
+        public void supprimerSeance(SeanceClasse seance)
         {
 
             try
             {
-                string nom = activite.Nom;
-                string categorie = activite.Type;
+                int id = seance.Id;
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "DELETE FROM activite WHERE nomActivite = '" + nom + "' AND nomCategorie= '" + categorie + "'";
+                commande.CommandText = "DELETE FROM seance WHERE idSeance = '" + id + "'";
                 con.Open();
                 int i = commande.ExecuteNonQuery();
 
@@ -160,7 +161,7 @@ namespace TravailSession.Classes
 
             //Réinitialise la liste des activités
             liste.Clear();
-            getActivites();
+            getSeances();
         }
 
 
@@ -188,7 +189,7 @@ namespace TravailSession.Classes
 
                 con.Close();
 
-            
+
             }
             catch (Exception ex)
             {
@@ -198,8 +199,9 @@ namespace TravailSession.Classes
 
             //Réinitialise la liste des activités
             liste.Clear();
-            getActivites();
+            getSeances();
         }
+
 
 
     }

@@ -34,6 +34,9 @@ namespace TravailSession
             this.InitializeComponent();
             mainFrame.Navigate(typeof(AccueilActivite));
 
+
+            //Initialisations des singlestons
+
             iActiviteCRUD.Visibility = Visibility.Collapsed;
             iAdherentCRUD.Visibility = Visibility.Collapsed;
             iSeanceCRUD.Visibility = Visibility.Collapsed;
@@ -42,18 +45,16 @@ namespace TravailSession
             iDeconnexion.Visibility = Visibility.Collapsed;
 
 
-            //Test d'initialisation de singleton
-            SingletonActivite.getInstance().getListe();
 
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test", "escalade", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test1", "gym", 50, 100));
-            SingletonActivite.getInstance().ajouterActivite(new ActiviteClasse("test2", "yoga", 50, 100));
+            //Initialisation des singleton
+            SingletonActivite.getInstance().getListe();
+            SingletonSeance.getInstance().getListe();
+
+
+            //Ajoute les activitÃ©s au singleton
+            SingletonActivite.getInstance().getActivites();
+            SingletonSeance.getInstance().getSeances();
+
         }
 
    
@@ -66,7 +67,7 @@ namespace TravailSession
 
             switch (item.Name)
             {
-                //Page que l'utilisateur voit par défaut
+                //Page que l'utilisateur voit par dÃ©faut
                 case "iActivite":
                     mainFrame.Navigate(typeof(AccueilActivite));
                     break;
@@ -107,7 +108,7 @@ namespace TravailSession
         }
 
         public void deconnexion(){
-            tbl_etat.Text = "Déconnecté";
+            tbl_etat.Text = "Dï¿½connectï¿½";
             iActiviteCRUD.Visibility = Visibility.Collapsed;
             iAdherentCRUD.Visibility = Visibility.Collapsed;
             iSeanceCRUD.Visibility = Visibility.Collapsed;
@@ -140,10 +141,9 @@ namespace TravailSession
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            
 
             ContentDialogResult resultat = await dialog.ShowAsync();
-            //gestion visibilité
+            //gestion visibilitÃ©
             if (resultat.ToString() == "Primary")
             {
                 iActiviteCRUD.Visibility = Visibility.Visible;
@@ -154,7 +154,7 @@ namespace TravailSession
                 iDeconnexion.Visibility = Visibility.Visible;
                 iLoginAdmin.Visibility = Visibility.Collapsed;
                 iLoginAdherent.Visibility = Visibility.Collapsed;
-                tbl_etat.Text = "Admin connecté";
+                tbl_etat.Text = "Admin connectÃ©";
             }
             
                
@@ -166,12 +166,11 @@ namespace TravailSession
         {
             ConnexionAdmin dialog = new ConnexionAdmin("adherent");
             dialog.XamlRoot = mainFrame.XamlRoot;
-            dialog.Title = "Authentification Adhérent";
+            dialog.Title = "Authentification AdhÃ©rent";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            
-          
+
 
             ContentDialogResult resultat = await dialog.ShowAsync();
 
@@ -185,7 +184,7 @@ namespace TravailSession
                 iDeconnexion.Visibility = Visibility.Visible;
                 iLoginAdmin.Visibility = Visibility.Collapsed;
                 iLoginAdherent.Visibility = Visibility.Collapsed;
-                tbl_etat.Text = "Utilisateur connecté";
+                tbl_etat.Text = "Utilisateur connectï¿½";
 
                 tbl_nom.Text = sessionAdherent._Adherent.NomAdherent +" " +  sessionAdherent._Adherent.PrenomAdherent;
 

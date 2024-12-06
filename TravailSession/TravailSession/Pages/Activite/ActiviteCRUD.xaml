@@ -31,18 +31,11 @@
         <!-- La barre en haut avec les boutons d'ajout et de recherche -->
 
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
-            <Button x:Name="btn_ajout" Content="Ajouter une activité" Click="btn_ajout_Click"/>
+            <Button x:Name="btn_ajout" Content="Ajouter une activité" Click="btn_ajout_Click" FontWeight="Medium" FontSize="20"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,20,0,0">
-            <Button x:Name="btn_recherche" Click="btn_recherche_Click">
-                <SymbolIcon Symbol="Find"></SymbolIcon>
-            </Button>
-            <TextBox x:Name="tbx_recherche" PlaceholderText="Rechercher" Width="400"/>
-        </StackPanel>
-        
-        
-        
+
+
         <!-- ListView qui contiendra les éléments de la liste -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="15" HorizontalAlignment="Center">
 
@@ -72,7 +65,7 @@
                     <DataTemplate x:DataType="Classes:ActiviteClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
                             
-                            <StackPanel Margin="0, 0, 100, 0" Width="200">
+                            <StackPanel Margin="0, 0, 80, 0" Width="220">
                                 <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind Nom}" />
                             </StackPanel>
 
