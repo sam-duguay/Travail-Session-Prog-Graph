@@ -29,6 +29,8 @@ namespace TravailSession.Pages.Adherent
         {
             this.InitializeComponent();
             ObservableCollection<AdherentClasse> liste = new ObservableCollection<AdherentClasse>();
+
+            SingletonAdherent.getInstance().getAdherent();
             SingletonAdherent.getInstance().getListe();
 
         lv_adherent.ItemsSource = SingletonAdherent.getInstance().Liste;
