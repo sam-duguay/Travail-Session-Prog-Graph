@@ -13,6 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using TravailSession.Classes;
+using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -22,8 +24,16 @@ namespace TravailSession.Pages.Seance
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
+    //L'index de la seance à modifier
+
+
     public sealed partial class SeanceU : Page
     {
+        SeanceClasse seanceModif;
+
+
         public SeanceU()
         {
             this.InitializeComponent();
@@ -46,7 +56,26 @@ namespace TravailSession.Pages.Seance
             timepicker.SelectedTime = new TimeSpan(8, 0, 0);
         }
 
-        private void btn_ajout_Click(object sender, RoutedEventArgs e)
+        //Reçoit l'activité lorsque la page se load
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is not null)
+            {
+                //Va chercher l'activité à modifier
+                seanceModif = (SeanceClasse)e.Parameter;
+
+                //Assignation des attributs de l'activité dans les champs approprié
+                cmb_activite.SelectedValue = seanceModif.NomActivite + "/" + seanceModif.TypeActivite;
+                tbx_place.Text = seanceModif.NbPlaceDispo.ToString();
+
+                calendardatepicker.MinDate = new DateTime(seanceModif.DateSeance.Year, seanceModif.DateSeance.Month, seanceModif.DateSeance.Day);
+                calendardatepicker.Date = new DateTime(seanceModif.DateSeance.Year, seanceModif.DateSeance.Month, seanceModif.DateSeance.Day);
+                timepicker.SelectedTime = new TimeSpan(seanceModif.HeureOrganisation.Hour, seanceModif.HeureOrganisation.Minute, seanceModif.HeureOrganisation.Second);
+            }
+        }
+
+
+        private void btn_modif_Click(object sender, RoutedEventArgs e)
         {
             string activite = cmb_activite.SelectedItem as string;
             string nbPlace = tbx_place.Text;
@@ -85,7 +114,7 @@ namespace TravailSession.Pages.Seance
             }
 
 
-            //L'ajout se fait uniquement SI les formulaires est valide
+            //La modification se fait uniquement SI les formulaires est valide
             if (estValide)
             {
 
@@ -99,16 +128,11 @@ namespace TravailSession.Pages.Seance
 
 
                 //Ajout de la séance dans la BD avec l'aide d'un singleton
-                SingletonSeance.getInstance().ajouterSeance(date, heure, Int32.Parse(nbPlace), nomActivite, nomCategorie);
-                tbl_succes.Text = "La séance a été ajoutée!";
+                SingletonSeance.getInstance().modifierSeance(seanceModif, date, heure, Int32.Parse(nbPlace), nomActivite, nomCategorie);
 
 
-
-                //Vide les champs pour préparer l'ajout d'une nouvelle activité
-                cmb_activite.SelectedIndex = 0;
-                tbx_place.Text = "";
-                calendardatepicker.Date = DateTime.Now;
-                timepicker.SelectedTime = new TimeSpan(0, 0, 0);
+                //Redirige à la page précédente
+                this.Frame.GoBack();
             }
 
         }
@@ -122,11 +146,6 @@ namespace TravailSession.Pages.Seance
             tbl_erreur_place.Text = "";
         }
 
-        private void btn_retour_Click(object sender, RoutedEventArgs e)
-        {
-            //Redirige à la page précédente
-            this.Frame.GoBack();
-        }
 
 
 

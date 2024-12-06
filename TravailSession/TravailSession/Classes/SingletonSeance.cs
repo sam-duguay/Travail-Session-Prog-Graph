@@ -165,23 +165,22 @@ namespace TravailSession.Classes
         }
 
 
-        public void modifierActivite(ActiviteClasse activiteModif, string nom, string categorie, double coutOrganiser, double prixVente)
+        public void modifierSeance(SeanceClasse seanceModif, string date, TimeSpan heure, int nbPlace, string nomActivite, string nomCategorie)
         {
             //Les clés primaires de l'ancienne activite
-            string oldNom = activiteModif.Nom;
-            string oldCategorie = activiteModif.Type;
+            int id = seanceModif.Id;
 
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "UPDATE activite SET nomActivite=@nom, nomCategorie=@categorie, coutOrganiserClient=@cout, prixVenteClient=@prix WHERE nomActivite=@oldNom AND nomCategorie=@oldCategorie ";
-                commande.Parameters.AddWithValue("@nom", nom);
-                commande.Parameters.AddWithValue("@categorie", categorie);
-                commande.Parameters.AddWithValue("@cout", coutOrganiser);
-                commande.Parameters.AddWithValue("@prix", prixVente);
-                commande.Parameters.AddWithValue("@oldNom", oldNom);
-                commande.Parameters.AddWithValue("@oldCategorie", oldCategorie);
+                commande.CommandText = "UPDATE seance SET dateSeance=@date, heureOrganisation=@heure, nbPlaceDispo=@place, nomActivite=@activite, typeActivite=@categorie WHERE idSeance=@id";
+                commande.Parameters.AddWithValue("@date", date);
+                commande.Parameters.AddWithValue("@heure", heure);
+                commande.Parameters.AddWithValue("@place", nbPlace);
+                commande.Parameters.AddWithValue("@activite", nomActivite);
+                commande.Parameters.AddWithValue("@categorie", nomCategorie);
+                commande.Parameters.AddWithValue("@id", id);
 
                 con.Open();
                 commande.Prepare();
