@@ -4,12 +4,87 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TravailSession.Pages"
+    xmlns:Classes="using:TravailSession.Classes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Bienvenue, " FontSize="32" FontWeight="Bold"/>
+            <TextBlock Text="voici les activités offertes par notre centre" FontSize="20" FontWeight="SemiBold"/>
+        </StackPanel>
+
+
+
+
+        <!-- ListView qui contiendra les éléments de la liste -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="15" HorizontalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Margin="0, 0, 100, 0" >
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Nom de l'activité" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 100, 0" >
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Type" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 100, 0">
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Coût de participation" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 100, 0">
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Évaluations sur 5" />
+                </StackPanel>
+
+
+            </StackPanel>
+
+            <ListView x:Name="lv_activite" Height="1000">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="Classes:ActiviteClasse">
+                        <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
+
+                            <StackPanel Margin="0, 0, 80, 0" Width="220">
+                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind Nom}" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 6, 100, 0" Width="180">
+                                <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind Type}" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 12, 100, 0" Width="100" Orientation="Horizontal">
+                                <TextBlock FontFamily="18" Text="{x:Bind PrixVenteClient}" />
+                                <TextBlock FontFamily="18" Text="$"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="0, 12, 100, 0" Width="100" Orientation="Horizontal">
+                                <TextBlock FontFamily="18" Text="{x:Bind Moyenne}" />
+                            </StackPanel>
+
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+
+
 
     </Grid>
 </Page>

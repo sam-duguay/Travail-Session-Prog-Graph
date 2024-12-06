@@ -10,6 +10,6 @@ namespace TravailSession.Classes
 {
     internal class SingletonBD
     {
-      
+        
     }
 }
