@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" Margin="0, 0, 0, 30">
-            <TextBlock Text="Menu d'ajout d'une séance" FontSize="32" FontWeight="Bold"/>
+            <TextBlock Text="Menu de modification d'une séance" FontSize="32" FontWeight="Bold"/>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="1">
@@ -48,17 +48,10 @@
 
 
 
-            <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click" HorizontalAlignment="Center">
-                Ajouter
+            <Button x:Name="btn_modif" FontSize="20" Click="btn_modif_Click" HorizontalAlignment="Center">
+                Modifier
             </Button>
-            <TextBlock x:Name="tbl_succes" Foreground="DarkRed"/>
 
-        </StackPanel>
-
-        <StackPanel Grid.Column="2" Grid.Row="0">
-            <Button x:Name="btn_retour" HorizontalAlignment="Right" FontSize="20" Click="btn_retour_Click" FontWeight="Medium">
-                Retour au CRUD séance
-            </Button>
         </StackPanel>
 
     </Grid>

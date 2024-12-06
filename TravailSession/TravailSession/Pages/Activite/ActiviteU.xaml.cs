@@ -123,7 +123,7 @@ namespace TravailSession.Pages.Activite
             }
 
 
-            //L'ajout se fait uniquement SI les formulaires est valide
+            //La modification se fait uniquement SI les formulaires est valide
             if (estValide)
             {
 
