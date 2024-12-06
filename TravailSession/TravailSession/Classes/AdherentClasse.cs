@@ -15,6 +15,8 @@ namespace TravailSession.Classes
         DateTimeOffset dateNais;
         int age;
 
+     
+
         public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTimeOffset dateNais)
         {
             this.nomAdherent = nomAdherent;

@@ -8,12 +8,13 @@ using TravailSession.Classes;
 using MySql.Data.MySqlClient;
 using Windows.UI.Notifications;
 using System.Data;
+using System.ComponentModel;
 
 namespace TravailSession.Classes
 {
     class SingletonAdherent
     {
-        MySqlConnection _connection;
+        MySqlConnection con;
         ObservableCollection<AdherentClasse> liste;
         static SingletonAdherent instance = null;
 
@@ -22,7 +23,7 @@ namespace TravailSession.Classes
 
         public SingletonAdherent()
         {
-            _connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3;Uid=1073274;Pwd=1073274;");
+            con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3;Uid=1073274;Pwd=1073274;");
             liste = new ObservableCollection<AdherentClasse>();
         }
 
@@ -43,13 +44,14 @@ namespace TravailSession.Classes
             liste.Clear();
 
             MySqlCommand command = new MySqlCommand();
-            command.Connection = _connection;
+            command.Connection = con;
             command.CommandText = "Select * from adherent";
 
-            _connection.Open();
+            con.Open();
             MySqlDataReader r = command.ExecuteReader();
             while (r.Read())
             {
+                string id = r.GetString("idAdherent");
                 string nom = r.GetString("nomAdherent");
                 string prenom = r.GetString("prenomAdherent");
                 string adresse = r.GetString("adresse");
@@ -59,37 +61,38 @@ namespace TravailSession.Classes
 
 
                 AdherentClasse adherent = new AdherentClasse(nom,prenom,adresse,date,age);
+                adherent.IdAdherent = id;
                 liste.Add(adherent);
             }
             r.Close();
-            _connection.Close();
+            con.Close();
 
 
             
         }
 
-        public void ajouterAdherent(string nom,string prenom, string adresse, DateTimeOffset date)
+        public void ajouterAdherent(string nom,string prenom, string adresse, string date)
         {
             try
             {
                 MySqlCommand command = new MySqlCommand("creation_Adherent");
-                command.Connection = _connection;
+                command.Connection = con;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("nom", nom);
                 command.Parameters.AddWithValue("prenom", prenom);
                 command.Parameters.AddWithValue("adresseAdherent", adresse);
                 command.Parameters.AddWithValue("dateNaissance",date);
 
-                _connection.Open();
+                con.Open();
                 command.Prepare();
                 int i = command.ExecuteNonQuery();
 
-                _connection.Close();
+                con.Close();
             }
             catch(Exception ex)
             {
-                if (_connection.State == System.Data.ConnectionState.Open)
-                    _connection.Close();
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
             }
 
 
@@ -113,9 +116,20 @@ namespace TravailSession.Classes
         {
             liste[position] = adherent;
         }
-        public void supprimerAdherent(int position)
+        public void supprimerAdherent(AdherentClasse adherent)
         {
-            liste.RemoveAt(position);
+            try
+            {
+                string id = adherent.IdAdherent;
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+
+            }
+
+            //liste.RemoveAt(position);
         }
     }
     

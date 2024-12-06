@@ -27,6 +27,14 @@ namespace TravailSession.Pages.Adherent
         public AdherentC()
         {
             this.InitializeComponent();
+            dp_naissance.MaxYear = DateTimeOffset.Now.AddYears(-18);
+
+        }
+
+        private void btn_retour_Click(object sender, RoutedEventArgs e)
+        {
+            //Redirige à la page précédente
+            this.Frame.GoBack();
         }
 
         private void btn_ajout_Click(object sender, RoutedEventArgs e)
@@ -34,7 +42,7 @@ namespace TravailSession.Pages.Adherent
             string nom = tbx_nom.Text;
             string prenom = tbx_prenom.Text;
             string adresse = tbx_adresse.Text;
-            DateTimeOffset date_naiss = dp_naissance.Date;
+            string date_naiss = dp_naissance.Date.ToString("yyyy-MM-dd");
 
             double nombre1;
             double nombre2;
@@ -73,7 +81,7 @@ namespace TravailSession.Pages.Adherent
             //L'ajout se fait uniquement SI les formulaires est valide
             if (estValide)
             {
-               
+                
 
                 //Ajout de l'activité dans la BD avec l'aide d'un singleton
                 SingletonAdherent.getInstance().ajouterAdherent(nom, prenom, adresse, date_naiss);

@@ -45,7 +45,7 @@ namespace TravailSession.Pages.Adherent
 
             int index =SingletonAdherent.getInstance().getListe().IndexOf(adherentClasse);
 
-            SingletonAdherent.getInstance().supprimerAdherent(index);
+            //SingletonAdherent.getInstance().supprimerAdherent(index);
         }
 
         private void btn_modifier_Click(object sender, RoutedEventArgs e)
