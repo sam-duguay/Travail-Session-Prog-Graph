@@ -9,7 +9,57 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Margin="50, 50, 50, 50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" Margin="0, 0, 0, 30">
+            <TextBlock Text="Menu d'ajout d'une séance" FontSize="32" FontWeight="Bold"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            
+            <TextBlock Text="Pour l'activité:" FontSize="20" Margin="0, 0, 0, 10"/>
+            <ComboBox x:Name="cmb_activite" Width="300"/>
+            <TextBlock x:Name="tbl_erreur_activite" Foreground="red"/>
+
+            <TextBlock Text="Le nombre de places disponibles:" FontSize="20" Margin="0, 10, 0, 10"/>
+            <TextBox x:Name="tbx_place"/>
+            <TextBlock x:Name="tbl_erreur_place" Foreground="red"/>
+
+
+            <TextBlock Text="La date de la séance" FontSize="20" Margin="0, 10, 0, 10"/>
+            <CalendarDatePicker x:Name="calendardatepicker"/>
+            <TextBlock x:Name="tbl_erreur_date" Foreground="red"/>
+
+            <TextBlock Text="L'heure de la séance" FontSize="20" Margin="0, 10, 0, 10"/>
+            <TimePicker x:Name="timepicker" ClockIdentifier="24HourClock" MinuteIncrement="15"/>
+            <TextBlock x:Name="tbl_erreur_heure" Foreground="red"/>
+
+
+
+
+
+
+            <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click" HorizontalAlignment="Center">
+                Ajouter
+            </Button>
+            <TextBlock x:Name="tbl_succes" Foreground="DarkRed"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <Button x:Name="btn_retour" HorizontalAlignment="Right" FontSize="20" Click="btn_retour_Click" FontWeight="Medium">
+                Retour au CRUD séance
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Page>

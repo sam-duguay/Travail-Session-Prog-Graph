@@ -36,3 +36,7 @@ La page d'activité contient le nom et la moyenne des notes d'évaluation de cha
 
 ### Win UI
 Rating control pour noter sur 5
+
+
+### TODO:
+1)Ajouter l'implémentation du SingletonActivite avec la BD.
