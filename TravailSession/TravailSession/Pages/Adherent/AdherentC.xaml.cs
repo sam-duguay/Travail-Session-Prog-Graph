@@ -73,7 +73,7 @@ namespace TravailSession.Pages.Adherent
             //L'ajout se fait uniquement SI les formulaires est valide
             if (estValide)
             {
-
+               
 
                 //Ajout de l'activité dans la BD avec l'aide d'un singleton
                 SingletonAdherent.getInstance().ajouterAdherent(nom, prenom, adresse, date_naiss);

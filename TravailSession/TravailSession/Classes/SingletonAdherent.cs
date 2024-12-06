@@ -68,7 +68,7 @@ namespace TravailSession.Classes
             
         }
 
-        public void ajouterAdherent(string nom,string prenom, string adresse, DateTime date)
+        public void ajouterAdherent(string nom,string prenom, string adresse, DateTimeOffset date)
         {
             try
             {
