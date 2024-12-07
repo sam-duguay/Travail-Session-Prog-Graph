@@ -14,11 +14,11 @@
     
    
     <StackPanel>
-        <TextBox Header="Nom" x:Name="tbx_user" Margin="5" Text="pdupont"/>
-        <TextBlock x:Name="tbl_validation_user"/>
+        <TextBox Header="" x:Name="tbx_user" Margin="5" Text="pdupont"/>
+        <TextBlock x:Name="tbl_validation_user"  Foreground="Red" />
         <PasswordBox Header="Mot de passe " x:Name="pwd_user" Margin="5" Password="password123" />
 
-        <TextBlock x:Name="tbl_validation_pwd"/>
+        <TextBlock x:Name="tbl_validation_pwd" Foreground="Red"/>
     </StackPanel>
 
 </ContentDialog>

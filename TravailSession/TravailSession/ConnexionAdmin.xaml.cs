@@ -52,10 +52,12 @@ namespace TravailSession
             
             if (statut == "admin")
             {
+                tbx_user.Header = "Nom Admin";
                 admin = true;
             }
             else
             {
+                tbx_user.Header = "ID Adhérent";
                 pwd_user.Visibility = Visibility.Collapsed;
                 admin = false;
             }
@@ -99,7 +101,7 @@ namespace TravailSession
                         else
                         {
                             args.Cancel = true;
-                            tbl_validation_user.Text = "vous n'avez pas les droit administrateur";
+                            tbl_validation_user.Text = "L'identifiant n'est pas valide";
                         }
                         reader.Close();
                         _connection.Close();
