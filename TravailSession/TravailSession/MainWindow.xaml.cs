@@ -119,7 +119,11 @@ namespace TravailSession
             iLoginAdherent.Visibility = Visibility.Visible;
 
             sessionAdherent.deconnexion();
-          
+
+            //Stocke le nom de l'adhérent dans le SingletonAccueil pour l'utiliser dans la page d'accueil
+            SingletonAccueil.getInstance().assignerTypeUtilisateur("");
+            mainFrame.Navigate(typeof(AccueilActivite));
+
 
 
 
@@ -186,7 +190,12 @@ namespace TravailSession
                 iLoginAdherent.Visibility = Visibility.Collapsed;
                 tbl_etat.Text = $"{sessionAdherent._Adherent.IdAdherent.ToString()} connecté";
 
-                
+
+
+                //Stocke le nom de l'adhérent dans le SingletonAccueil pour l'utiliser dans la page d'accueil
+                SingletonAccueil.getInstance().assignerTypeUtilisateur("Adhérent");
+                mainFrame.Navigate(typeof(AccueilActivite));
+
 
             }
         }

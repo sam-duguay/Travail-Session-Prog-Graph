@@ -12,6 +12,7 @@ namespace TravailSession.Classes
     {
         MySqlConnection con;
         ObservableCollection<ActiviteClasse> listeActivite;
+        string typeUtilisateur;
         static SingletonAccueil instance = null;
 
 
@@ -22,6 +23,10 @@ namespace TravailSession.Classes
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3;Uid=1477852;Pwd=1477852;");
             listeActivite = new ObservableCollection<ActiviteClasse>();
+
+            //Sert à déterminer la catégorie de l'utilisateur pour déterminer s'il a accès ou non
+            //aux séances sur la page d'accueil une fois qu'il clique sur une activitée.
+            typeUtilisateur = string.Empty;
         }
 
         public static SingletonAccueil getInstance()
@@ -38,6 +43,16 @@ namespace TravailSession.Classes
         public ObservableCollection<ActiviteClasse> getListe()
         {
             return listeActivite;
+        }
+
+        public void assignerTypeUtilisateur(string type)
+        {
+            typeUtilisateur = type;
+        }
+
+        public string getTypeUtilisateur()
+        {
+            return typeUtilisateur;
         }
 
         public void getActivites()
