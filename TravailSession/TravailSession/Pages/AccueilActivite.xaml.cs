@@ -33,6 +33,19 @@ namespace TravailSession.Pages
             SingletonAccueil.getInstance().getListe();
 
             lv_activite.ItemsSource = SingletonAccueil.getInstance().ListeActivite;
+
+
+
+            //Regarde si l'utilisateur est connecté
+            if (SingletonAccueil.getInstance().getTypeUtilisateur().Equals("Adhérent"))
+            {
+                tbl_connexion.Text = "Adhérent connecté";
+            }
+            else
+            {
+                tbl_connexion.Text = "vide";
+            }
+
         }
     }
 }

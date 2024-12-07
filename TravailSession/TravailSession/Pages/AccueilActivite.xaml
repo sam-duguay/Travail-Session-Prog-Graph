@@ -25,6 +25,8 @@
         <StackPanel Grid.Row="0">
             <TextBlock Text="Bienvenue, " FontSize="32" FontWeight="Bold"/>
             <TextBlock Text="voici les activités offertes par notre centre" FontSize="20" FontWeight="SemiBold"/>
+
+            <TextBlock x:Name="tbl_connexion">test</TextBlock>
         </StackPanel>
 
 
