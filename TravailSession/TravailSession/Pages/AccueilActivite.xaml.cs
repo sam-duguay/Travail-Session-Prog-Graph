@@ -13,6 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using TravailSession.Classes;
+using TravailSession.Pages.Activite;
+using TravailSession.Pages.Accueil;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,17 +37,33 @@ namespace TravailSession.Pages
             lv_activite.ItemsSource = SingletonAccueil.getInstance().ListeActivite;
 
 
+            //Affiche le lien vers les inscriptions si un adhérent est connecté
+            if (SingletonAccueil.getInstance().getTypeUtilisateur().Equals("Adhérent"))
+            {
+                stkpnl_inscription.Visibility = Visibility.Visible;
+            }
+
+        }
+
+
+        //***Exécuter cette fonction seulement si c'est un adhérent qui est connecté
+        private void lv_activite_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
             //Regarde si l'utilisateur est connecté
             if (SingletonAccueil.getInstance().getTypeUtilisateur().Equals("Adhérent"))
             {
-                tbl_connexion.Text = "Adhérent connecté";
-            }
-            else
-            {
-                tbl_connexion.Text = "vide";
+                int index = lv_activite.SelectedIndex;
+
+                //Envoie l'index de l'objet à modifier
+                this.Frame.Navigate(typeof(AccueilZoomSeance), index);
             }
 
+        }
+
+        private void btn_inscription_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AccueilZoomParticipation));
         }
     }
 }

@@ -12,21 +12,29 @@ namespace TravailSession.Classes
     {
         MySqlConnection con;
         ObservableCollection<ActiviteClasse> listeActivite;
+        ObservableCollection<SeanceClasse> listeSeance;
+        ObservableCollection<ParticipationClasse> listeParticipation;
         string typeUtilisateur;
+        ActiviteClasse activiteChoissi;
         static SingletonAccueil instance = null;
 
 
-        //Propriété qui retourne la liste
+        //Propriétés qui retourne les listes
         internal ObservableCollection<ActiviteClasse> ListeActivite { get { return listeActivite; } }
+        internal ObservableCollection<SeanceClasse> ListeSeance { get { return listeSeance; } }
+        internal ObservableCollection<ParticipationClasse> ListeParticipation { get { return listeParticipation; } }
 
         public SingletonAccueil()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3;Uid=1477852;Pwd=1477852;");
             listeActivite = new ObservableCollection<ActiviteClasse>();
+            listeSeance = new ObservableCollection<SeanceClasse>();
+            listeParticipation = new ObservableCollection<ParticipationClasse>();
 
             //Sert à déterminer la catégorie de l'utilisateur pour déterminer s'il a accès ou non
             //aux séances sur la page d'accueil une fois qu'il clique sur une activitée.
             typeUtilisateur = string.Empty;
+            activiteChoissi = new ActiviteClasse("", "", 0, 0);
         }
 
         public static SingletonAccueil getInstance()
@@ -45,6 +53,11 @@ namespace TravailSession.Classes
             return listeActivite;
         }
 
+        public ObservableCollection<SeanceClasse> getListeSeance()
+        {
+            return listeSeance;
+        }
+
         public void assignerTypeUtilisateur(string type)
         {
             typeUtilisateur = type;
@@ -54,6 +67,17 @@ namespace TravailSession.Classes
         {
             return typeUtilisateur;
         }
+
+        public void assignerActiviteChoissi(ActiviteClasse activite)
+        {
+            activiteChoissi = activite;
+        }
+
+        public ActiviteClasse getactiviteChoissi()
+        {
+            return activiteChoissi;
+        }
+
 
         public void getActivites()
         {
@@ -82,5 +106,127 @@ namespace TravailSession.Classes
             r.Close();
             con.Close();
         }
+
+        public ActiviteClasse getActivite(int index)
+        {
+            return listeActivite[index];
+        }
+
+
+
+        public void getSeances(ActiviteClasse activiteRecherche)
+        {
+            listeSeance.Clear();
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from seance WHERE nomActivite='" + activiteRecherche.Nom + "' AND typeActivite='" + activiteRecherche.Type + "' AND nbPlaceDispo!=0";
+
+            con.Open();
+            MySqlDataReader r = commande.ExecuteReader();
+            while (r.Read())
+            {
+                int id = r.GetInt32("idSeance");
+                DateOnly date = DateOnly.FromDateTime(r.GetDateTime("dateSeance"));
+                DateTime heure = r.GetDateTime("heureOrganisation");
+                int nbPlace = r.GetInt32("nbPlaceDispo");
+                string activite = r.GetString("nomActivite");
+                string type = r.GetString("typeActivite");
+
+
+                SeanceClasse seance = new SeanceClasse(id, date, heure, nbPlace, activite, type);
+
+                listeSeance.Add(seance);
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+        public void getSeancesInscrit(string idAdherent)
+        {
+            listeParticipation.Clear();
+
+            try
+            {
+                //Procédure stockée
+                MySqlCommand commande = new MySqlCommand("detailsParticipation");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("id", idAdherent);
+
+                con.Open();
+                commande.Prepare();
+                //int i = commande.ExecuteNonQuery();
+
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+
+                    int id = r.GetInt32("idSeance");
+                    string activite = r.GetString("nomActivite");
+                    string typeActivite = r.GetString("typeActivite");
+                    DateOnly date = DateOnly.FromDateTime(r.GetDateTime("dateSeance"));
+                    DateTime heure = r.GetDateTime("heureOrganisation");
+                    int nbPlace = r.GetInt32("nbPlaceDispo");
+                    string adherent = r.GetString("idAdherent");
+                    int note = r.GetInt32("note");
+                    
+                    ParticipationClasse participation = new ParticipationClasse(id, adherent, date, heure, nbPlace, activite, typeActivite, note);
+
+                    listeParticipation.Add(participation);
+
+                }
+
+                r.Close();
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
+
+        public void ajouterParticipation(int note, string idAdherent, int idSeance)
+        {
+
+            //Réinitialise la liste des activités
+            listeParticipation.Clear();
+
+            try
+            {
+                //Procédure stockée
+                MySqlCommand commande = new MySqlCommand("creation_Participation");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("noteAppreciation", note);
+                commande.Parameters.AddWithValue("identificationClient", idAdherent);
+                commande.Parameters.AddWithValue("identificationSeance", idSeance);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+
+            getSeancesInscrit(idAdherent);
+
+
+            
+        }
+
+
+
     }
 }

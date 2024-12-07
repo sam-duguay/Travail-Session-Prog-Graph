@@ -15,6 +15,8 @@
   <ItemGroup>
     <None Remove="ConnexionAdmin.xaml" />
     <None Remove="Pages\AccueilActivite.xaml" />
+    <None Remove="Pages\Accueil\AccueilZoomParticipation.xaml" />
+    <None Remove="Pages\Accueil\AccueilZoomSeance.xaml" />
     <None Remove="Pages\Activite\ActiviteC.xaml" />
     <None Remove="Pages\Activite\ActiviteCRUD.xaml" />
     <None Remove="Pages\Activite\ActiviteU.xaml" />
@@ -54,6 +56,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Accueil\AccueilZoomParticipation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ConnexionAdmin.xaml">
@@ -127,6 +134,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Activite\ActiviteCRUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Accueil\AccueilZoomSeance.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

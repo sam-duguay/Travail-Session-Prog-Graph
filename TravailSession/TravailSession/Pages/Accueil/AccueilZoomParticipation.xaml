@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="TravailSession.Pages.Seance.SeanceCRUD"
+    x:Class="TravailSession.Pages.Accueil.AccueilZoomParticipation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TravailSession.Pages.Seance"
+    xmlns:local="using:TravailSession.Pages.Accueil"
+    xmlns:Classes="using:TravailSession.Classes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    xmlns:Classes="using:TravailSession.Classes">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -23,26 +23,15 @@
 
 
         <StackPanel Grid.Row="0">
-            <TextBlock Text="Menu de gestion des séances" FontSize="32" FontWeight="Bold"/>
+            <TextBlock Text="Liste de vos inscriptions" FontSize="32" FontWeight="SemiBold"/>
+            <TextBlock x:Name="tbl_activite" FontSize="20" FontWeight="SemiBold"/>
         </StackPanel>
-
-
-        <!-- La barre en haut avec les boutons d'ajout et de recherche -->
-
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
-            <Button x:Name="btn_ajout" Content="Ajouter une séance" Click="btn_ajout_Click" FontWeight="Medium" FontSize="20"/>
-        </StackPanel>
-
-
+        
 
         <!-- ListView qui contiendra les éléments de la liste -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="15" HorizontalAlignment="Center">
 
             <StackPanel Orientation="Horizontal">
-
-                <StackPanel Margin="10, 0, 85, 0" >
-                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Id" />
-                </StackPanel>
 
                 <StackPanel Margin="0, 0, 225, 0">
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Activité" />
@@ -56,50 +45,55 @@
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Heure" />
                 </StackPanel>
 
-                <StackPanel Margin="0, 0, 100, 0">
+                <StackPanel Margin="0, 0, 70, 0">
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Places disponibles" />
                 </StackPanel>
-                
-                
+
+                <StackPanel Margin="0, 0, 75, 0">
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Votre évaluation" />
+                </StackPanel>
+
+                <StackPanel Margin="0, 0, 0, 0">
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Évaluer" />
+                </StackPanel>
+
+
 
 
             </StackPanel>
 
-            <ListView x:Name="lv_seance" Height="1000">
+            <ListView x:Name="lv_participation" Height="1000">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="Classes:SeanceClasse">
+                    <DataTemplate x:DataType="Classes:ParticipationClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
 
-                            <StackPanel Margin="0, 0, 70, 0" Width="35">
-                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind Id}" />
-                            </StackPanel>
-
-                            <StackPanel Margin="0, 0, 0, 0" Width="300" Orientation="Horizontal">
+                            <StackPanel Margin="0, 0, 5, 0" Width="300" Orientation="Horizontal">
                                 <TextBlock FontSize="25" FontWeight="SemiBold" Text="{x:Bind NomActivite}"/>
                                 <TextBlock FontSize="25" FontWeight="SemiBold" Text="("/>
                                 <TextBlock FontSize="25" FontWeight="SemiBold" Text="{x:Bind TypeActivite}"/>
                                 <TextBlock FontSize="25" FontWeight="SemiBold" Text=")"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0, 6, 90, 0" Width="100">
+                            <StackPanel Margin="0, 6, 60, 0" Width="100">
                                 <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind DateSeance}" />
                             </StackPanel>
 
-                            <StackPanel Margin="0, 6, 0, 0" Width="210" Orientation="Horizontal">
+                            <StackPanel Margin="0, 6, 10, 0" Width="210" Orientation="Horizontal">
                                 <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind HeureFormatte}" />
                             </StackPanel>
 
-                            <StackPanel Margin="0, 6, 0, 0" Width="180" Orientation="Horizontal">
+                            <StackPanel Margin="0, 6, 110, 0" Width="180" Orientation="Horizontal">
                                 <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind NbPlaceDispo}" />
                             </StackPanel>
 
-                            
+                            <StackPanel Margin="0, 6, 0, 0" Width="180" Orientation="Horizontal">
+                                <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind Note}" />
+                            </StackPanel>
 
-                            <Button x:Name="btn_modifier" Width="100" Click="btn_modifier_Click">
-                                <SymbolIcon Symbol="Edit"/>
-                            </Button>
-                            <Button x:Name="btn_supprimer" Foreground="red" Margin="0, 0, 100, 0" Width="100" Click="btn_supprimer_Click">
-                                <SymbolIcon Symbol="Delete"/>
+
+
+                            <Button x:Name="btn_vote" Click="btn_vote_Click" Width="100">
+                                <SymbolIcon Symbol="SolidStar"  Foreground="red"/>
                             </Button>
 
 
@@ -107,6 +101,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+
         </StackPanel>
 
 
