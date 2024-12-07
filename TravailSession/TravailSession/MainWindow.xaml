@@ -15,7 +15,7 @@
             IsSettingsVisible="False">
             <NavigationView.PaneCustomContent>
                 <StackPanel>
-                    <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+                    <TextBlock Text="Déconnecté" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
                 </StackPanel>
                
             </NavigationView.PaneCustomContent>
