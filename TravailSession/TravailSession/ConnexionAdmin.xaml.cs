@@ -65,7 +65,11 @@ namespace TravailSession
 
      
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+
         {
+
+            tbl_validation_pwd.Text = "";
+            tbl_validation_user.Text = "";
             // avant la fermeture:
             if (args.Result == ContentDialogResult.Primary)
             {
@@ -100,8 +104,49 @@ namespace TravailSession
                         }
                         else
                         {
-                            args.Cancel = true;
+                            reader.Close();
+                            _connection.Close();
+
+                            cmd.CommandText = $"SELECT * FROM administrateur WHERE nomAdmin like '{tbx_user.Text}';";
+                            _connection.Open();
+
+                             reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            reader.Close();
+                            _connection.Close();
+
+                            cmd.CommandText = $"SELECT * FROM administrateur WHERE nomAdmin like '{tbx_user.Text}' and mdp like '{pwd_user.Password}';";
+                            _connection.Open();
+
+                            reader = cmd.ExecuteReader();
+
+
+                            if (reader.Read())
+                            {
+                                
+
+                            }
+                            else
+                            {
+                                args.Cancel = true;
+                                tbl_validation_pwd.Text = "Le mots de passe n'est pas valide";
+                            }
+
+
+
+
+                        }
+                        else
+                        {
+                        args.Cancel = true;
                             tbl_validation_user.Text = "L'identifiant n'est pas valide";
+                        }
+
+
+
+                        
                         }
                         reader.Close();
                         _connection.Close();
