@@ -56,13 +56,13 @@ namespace TravailSession.Pages.Adherent
             //Validation avant l'ajout d'une activité
             if (string.IsNullOrWhiteSpace(nom))
             {
-                tbl_erreur_nom.Text = "Un nom d'activité est requis.";
+                tbl_erreur_nom.Text = "Un nom  est requis.";
                 estValide = false;
             }
 
             if (string.IsNullOrWhiteSpace(prenom))
             {
-                tbl_erreur_prenom.Text = "Un type d'activité est requis.";
+                tbl_erreur_prenom.Text = "Un prenom est requis.";
                 estValide = false;
             }
 
@@ -73,7 +73,14 @@ namespace TravailSession.Pages.Adherent
                 estValide = false;
             }
 
-   
+            if (string.IsNullOrWhiteSpace(date_naiss))
+            {
+                tbl_erreur_adresse.Text = "Veuillez entrer un date valide.";
+
+                estValide = false;
+            }
+
+
 
 
 

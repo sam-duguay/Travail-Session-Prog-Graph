@@ -35,12 +35,16 @@ namespace TravailSession
         MySqlConnection _connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3; Uid=1073274;Pwd=1073274;");
         Boolean admin;
         ConnexionClasse connexion = new ConnexionClasse(false);
+
+ 
         
         
 
         public ConnexionAdmin(string statut)
         {
             this.InitializeComponent();
+
+          
 
            
            

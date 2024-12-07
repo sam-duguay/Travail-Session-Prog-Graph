@@ -24,7 +24,7 @@
 
 
         <StackPanel Grid.Row="0">
-            <TextBlock Text="Menu de gestion des adhérents" FontSize="32" FontWeight="Bold"/>
+            <TextBlock Text="Menu de gestion des adhérents" FontSize="32" FontWeight="Bold" />
         </StackPanel>
 
 

@@ -32,6 +32,7 @@ namespace TravailSession.Pages.Adherent
 
             SingletonAdherent.getInstance().getAdherent();
             SingletonAdherent.getInstance().getListe();
+           
 
         lv_adherent.ItemsSource = SingletonAdherent.getInstance().Liste;
 
