@@ -9,14 +9,13 @@
     mc:Ignorable="d">
 
     <Grid>
-        <NavigationView PaneDisplayMode="Top" PaneTitle="Menu" x:Name="navView" IsBackEnabled="False"
-            SelectionChanged="navView_SelectionChanged"  IsBackButtonVisible="Collapsed"
+        <NavigationView PaneDisplayMode="Top" PaneTitle="Menu" x:Name="navView"
+            SelectionChanged="navView_SelectionChanged"  IsBackButtonVisible="Visible"  IsBackEnabled="True"
+                        BackRequested="navView_BackRequested"
             IsSettingsVisible="False">
             <NavigationView.PaneCustomContent>
                 <StackPanel>
-                     <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_nom"/>
-                     <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_prenom"/>
-                     <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+                    <TextBlock Text="ok" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
                 </StackPanel>
                
             </NavigationView.PaneCustomContent>

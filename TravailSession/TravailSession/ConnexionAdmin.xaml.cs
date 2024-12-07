@@ -147,12 +147,13 @@ namespace TravailSession
                                                                     (DateTime)reader2["dateNais"],
                                                                     (int)reader2["age"]
                                                                     ));
+                        sessionAdherent._Adherent.IdAdherent = reader2["idAdherent"].ToString();
                             args.Cancel = false;
                         }
                         else
                         {
                             args.Cancel = true;
-                            tbl_validation_user.Text = "vous n'avez pas les droit administrateur";
+                            tbl_validation_user.Text = "L'Id n'existe pas. ";
                         }
                         reader2.Close();
                         _connection.Close();

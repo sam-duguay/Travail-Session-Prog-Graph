@@ -108,7 +108,7 @@ namespace TravailSession
         }
 
         public void deconnexion(){
-            tbl_etat.Text = "D�connect�";
+            tbl_etat.Text = "Déconnecté";
             iActiviteCRUD.Visibility = Visibility.Collapsed;
             iAdherentCRUD.Visibility = Visibility.Collapsed;
             iSeanceCRUD.Visibility = Visibility.Collapsed;
@@ -119,7 +119,7 @@ namespace TravailSession
             iLoginAdherent.Visibility = Visibility.Visible;
 
             sessionAdherent.deconnexion();
-            tbl_nom.Text = "";
+          
 
 
 
@@ -184,15 +184,24 @@ namespace TravailSession
                 iDeconnexion.Visibility = Visibility.Visible;
                 iLoginAdmin.Visibility = Visibility.Collapsed;
                 iLoginAdherent.Visibility = Visibility.Collapsed;
-                tbl_etat.Text = "Utilisateur connect�";
+                tbl_etat.Text = $"{sessionAdherent._Adherent.IdAdherent.ToString()} connecté";
 
-                tbl_nom.Text = sessionAdherent._Adherent.NomAdherent +" " +  sessionAdherent._Adherent.PrenomAdherent;
+                
 
             }
         }
 
+        private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            try
+            {
+                mainFrame.GoBack();
+            }
+            catch (Exception ex) 
+            { 
 
-
-
+            }
+            
+        }
     }
 }
