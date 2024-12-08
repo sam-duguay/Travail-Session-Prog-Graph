@@ -39,9 +39,24 @@ namespace TravailSession.Pages.Accueil
             lv_participation.ItemsSource = SingletonAccueil.getInstance().ListeParticipation;
         }
 
-            private void btn_vote_Click(object sender, RoutedEventArgs e)
+        private async void btn_vote_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            ParticipationClasse participation = button.DataContext as ParticipationClasse;
 
+            SingletonAccueil.getInstance().assignerIdSeance(participation.IdSeance); 
+
+            //Affichage du dialogue après une inscription
+            DialogueNote dialog = new DialogueNote();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Veuillez noter la séance sur 5";
+            dialog.CloseButtonText = "Annuler";
+            dialog.PrimaryButtonText = "Attribuer";
+            
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
         }
     }
 }

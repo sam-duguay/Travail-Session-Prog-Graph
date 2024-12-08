@@ -20,6 +20,7 @@ namespace TravailSession.Classes
 
         string typeUtilisateur;
         string statutInscription;
+        int idSeance;
         ActiviteClasse activiteChoissi;
         
 
@@ -40,6 +41,7 @@ namespace TravailSession.Classes
             //aux séances sur la page d'accueil une fois qu'il clique sur une activitée.
             typeUtilisateur = string.Empty;
             statutInscription = string.Empty;
+            idSeance = 0;
             activiteChoissi = new ActiviteClasse("", "", 0, 0);
         }
 
@@ -52,6 +54,10 @@ namespace TravailSession.Classes
 
             return instance;
         }
+
+
+
+
 
 
         public ObservableCollection<ActiviteClasse> getListe()
@@ -84,6 +90,16 @@ namespace TravailSession.Classes
             return statutInscription;
         }
 
+        public void assignerIdSeance(int id)
+        {
+            idSeance = id;
+        }
+
+        public int getIdSeance()
+        {
+            return idSeance;
+        }
+
         public void assignerActiviteChoissi(ActiviteClasse activite)
         {
             activiteChoissi = activite;
@@ -93,6 +109,9 @@ namespace TravailSession.Classes
         {
             return activiteChoissi;
         }
+
+
+
 
 
         public void getActivites()
@@ -114,7 +133,7 @@ namespace TravailSession.Classes
 
                 ActiviteClasse activite = new ActiviteClasse(nom, categorie, 0.0, prix);
 
-                activite.Moyenne = moyenne;
+                activite.Moyenne = Math.Round(moyenne, 1);
 
                 listeActivite.Add(activite);
             }
@@ -207,6 +226,8 @@ namespace TravailSession.Classes
         }
 
 
+
+
         public void ajouterParticipation(int note, string idAdherent, int idSeance)
         {
 
@@ -252,6 +273,36 @@ namespace TravailSession.Classes
         }
 
 
+        public void updateNoteParticipation(int note, string adherent, int seance)
+        {
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                commande.CommandText = "UPDATE participation SET note=@note WHERE idAdherent=@adherent AND idSeance=@seance ";
+                commande.Parameters.AddWithValue("@note", note);
+                commande.Parameters.AddWithValue("@adherent", adherent);
+                commande.Parameters.AddWithValue("@seance", seance);
+
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+            //Réinitialise la liste des activités
+            getSeancesInscrit(adherent);
+        }
 
     }
 }
