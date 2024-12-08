@@ -43,11 +43,11 @@
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Margin="0, 0, 100, 0" >
-                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Nom " />
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="ID " />
                 </StackPanel>
 
                 <StackPanel Margin="0, 0, 100, 0" >
-                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Prenom " />
+                    <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Nom Complet " />
                 </StackPanel>
 
                 <StackPanel Margin="0, 0, 100, 0" >
@@ -65,13 +65,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Classes:AdherentClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
-
                             <StackPanel Margin="0, 0, 100, 0" Width="200">
-                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind NomAdherent}" />
+                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind IdAdherent}" />
                             </StackPanel>
 
-                            <StackPanel Margin="0, 6, 100, 0" Width="200">
-                                <TextBlock FontSize="18" FontWeight="SemiBold" Text="{x:Bind PrenomAdherent}" />
+                            <StackPanel Margin="0, 0, 100, 0" Width="200" Orientation="Horizontal">
+                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind NomAdherent}"/>
+                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind PrenomAdherent}"/>
                             </StackPanel>
 
                             <StackPanel Margin="0, 12, 100, 0" Width="200" Orientation="Horizontal">

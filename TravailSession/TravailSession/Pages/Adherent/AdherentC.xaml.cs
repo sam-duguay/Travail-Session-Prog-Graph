@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using TravailSession.Classes;
+using System.Diagnostics.Eventing.Reader;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,7 +28,10 @@ namespace TravailSession.Pages.Adherent
         public AdherentC()
         {
             this.InitializeComponent();
-            dp_naissance.MaxYear = DateTimeOffset.Now.AddYears(-18);
+            dp_naissance.Date = DateTime.Now.AddYears(-18);
+            dp_naissance.MaxDate = DateTime.Now.AddYears(-18);
+            
+            
 
         }
 
@@ -38,18 +42,21 @@ namespace TravailSession.Pages.Adherent
         }
 
         private void btn_ajout_Click(object sender, RoutedEventArgs e)
+
         {
+
+            
             string nom = tbx_nom.Text;
             string prenom = tbx_prenom.Text;
             string adresse = tbx_adresse.Text;
-            string date_naiss = dp_naissance.Date.ToString("yyyy-MM-dd");
+            string date_naiss = dp_naissance.Date.Value.ToString("yyyy-MM-dd");
 
-            double nombre1;
-            double nombre2;
 
-            bool estValide = true;
 
-            //Reset des erreurs à chaque envoie.
+
+                bool estValide = true;
+
+         
             resetChamps();
 
 
@@ -73,18 +80,7 @@ namespace TravailSession.Pages.Adherent
                 estValide = false;
             }
 
-            if (string.IsNullOrWhiteSpace(date_naiss))
-            {
-                tbl_erreur_adresse.Text = "Veuillez entrer un date valide.";
-
-                estValide = false;
-            }
-
-
-
-
-
-
+ 
             //L'ajout se fait uniquement SI les formulaires est valide
             if (estValide)
             {
@@ -97,7 +93,7 @@ namespace TravailSession.Pages.Adherent
                 tbx_nom.Text = "";
                 tbx_prenom.Text = "";
                 tbx_adresse.Text = "";
-                dp_naissance = null;
+                dp_naissance.Date = DateTime.Now.AddYears(-18);
 
 
             }
@@ -110,7 +106,14 @@ namespace TravailSession.Pages.Adherent
             tbx_nom.Text = "";
             tbx_prenom.Text = "";
             tbx_adresse.Text = "";
-            dp_naissance = null;
+            dp_naissance.Date = DateTime.Now.AddYears(-18);
+
+            tbl_erreur_nom.Text = "";
+            tbl_erreur_prenom.Text = "";
+            tbl_erreur_adresse.Text = "";
+            
+
+
         }
     }
 }
