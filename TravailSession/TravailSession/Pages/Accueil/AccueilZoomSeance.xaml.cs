@@ -55,7 +55,7 @@ namespace TravailSession.Pages.Accueil
             }
         }
 
-        private void btn_inscription_Click(object sender, RoutedEventArgs e)
+        private async void btn_inscription_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             SeanceClasse seance = button.DataContext as SeanceClasse;
@@ -65,7 +65,18 @@ namespace TravailSession.Pages.Accueil
 
             SingletonAccueil.getInstance().getSeances(SingletonAccueil.getInstance().getactiviteChoissi());
             SingletonAccueil.getInstance().getListeSeance();
-            
+
+
+
+            //Affichage du dialogue après une inscription
+            DialogueParticipation dialog = new DialogueParticipation();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Message de confirmation";
+            dialog.CloseButtonText = "OK";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
         }
     }
 }

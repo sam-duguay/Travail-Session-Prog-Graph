@@ -11,12 +11,17 @@ namespace TravailSession.Classes
     internal class SingletonAccueil
     {
         MySqlConnection con;
+
         ObservableCollection<ActiviteClasse> listeActivite;
         ObservableCollection<SeanceClasse> listeSeance;
         ObservableCollection<ParticipationClasse> listeParticipation;
-        string typeUtilisateur;
-        ActiviteClasse activiteChoissi;
+
         static SingletonAccueil instance = null;
+
+        string typeUtilisateur;
+        string statutInscription;
+        ActiviteClasse activiteChoissi;
+        
 
 
         //Propriétés qui retourne les listes
@@ -34,6 +39,7 @@ namespace TravailSession.Classes
             //Sert à déterminer la catégorie de l'utilisateur pour déterminer s'il a accès ou non
             //aux séances sur la page d'accueil une fois qu'il clique sur une activitée.
             typeUtilisateur = string.Empty;
+            statutInscription = string.Empty;
             activiteChoissi = new ActiviteClasse("", "", 0, 0);
         }
 
@@ -66,6 +72,16 @@ namespace TravailSession.Classes
         public string getTypeUtilisateur()
         {
             return typeUtilisateur;
+        }
+
+        public void assignerStatutInscription(string statut)
+        {
+            statutInscription = statut;
+        }
+
+        public string getStatutInscription()
+        {
+            return statutInscription;
         }
 
         public void assignerActiviteChoissi(ActiviteClasse activite)
@@ -212,11 +228,20 @@ namespace TravailSession.Classes
                 commande.ExecuteNonQuery();
 
                 con.Close();
+
+
+                //Mise à jour du statut de l'inscription pour confirmation dans le DialogueParticipation
+                statutInscription = "Vous êtes maintenant inscrit à cette séance!";
+
             }
             catch (Exception ex)
             {
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
+
+
+                //Si l'utilisateur est déjà inscrit, le message du DialogueParticipation sera différent
+                statutInscription = "Vous êtes déjà inscrit pour cette séance.";
             }
 
 

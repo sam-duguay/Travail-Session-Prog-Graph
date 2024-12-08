@@ -23,6 +23,7 @@
     <None Remove="Pages\Adherent\AdherentC.xaml" />
     <None Remove="Pages\Adherent\AdherentCRUD.xaml" />
     <None Remove="Pages\Adherent\AdherentU.xaml" />
+    <None Remove="Pages\DialogueParticipation.xaml" />
     <None Remove="Pages\PageActiviteCRUD.xaml" />
     <None Remove="Pages\PageAdherentCRUD.xaml" />
     <None Remove="Pages\PageSeanceCRUD.xaml" />
@@ -56,6 +57,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\DialogueParticipation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Accueil\AccueilZoomParticipation.xaml">

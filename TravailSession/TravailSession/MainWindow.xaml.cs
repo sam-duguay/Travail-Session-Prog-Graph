@@ -122,7 +122,14 @@ namespace TravailSession
 
             //Stocke le nom de l'adhérent dans le SingletonAccueil pour l'utiliser dans la page d'accueil
             SingletonAccueil.getInstance().assignerTypeUtilisateur("");
+
+
+
+            //Renvoie à la page d'accueil après la déconnexion
             mainFrame.Navigate(typeof(AccueilActivite));
+
+            //Reset du bouton précédent pour empêcher qu'un utilisateur non connecté puisse accèder aux pages précédentes
+            mainFrame.BackStack.Clear();
 
 
 
