@@ -42,7 +42,7 @@
 
             <StackPanel Orientation="Horizontal">
 
-                <StackPanel Margin="0, 0, 100, 0" >
+                <StackPanel Margin="0, 0, 100, 0">
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="ID " />
                 </StackPanel>
 
@@ -50,11 +50,11 @@
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Nom Complet " />
                 </StackPanel>
 
-                <StackPanel Margin="0, 0, 100, 0" >
+                <StackPanel Margin="0, 0, 100, 0"  >
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Adresse " />
                 </StackPanel>
 
-                <StackPanel Margin="0, 0, 100, 0">
+                <StackPanel Margin="0, 0, 100, 0" >
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="Date naissance" />
                 </StackPanel>
 
@@ -65,30 +65,31 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Classes:AdherentClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
-                            <StackPanel Margin="0, 0, 100, 0" Width="200">
-                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind IdAdherent}" />
+                            <StackPanel Margin="0, 0,80 , 0">
+                                <TextBlock FontSize="18" FontWeight="Bold" Text="{x:Bind IdAdherent}" HorizontalAlignment="Left"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0, 0, 100, 0" Width="200" Orientation="Horizontal">
-                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind NomAdherent}"/>
-                                <TextBlock FontSize="25" FontWeight="Bold" Text="{x:Bind PrenomAdherent}"/>
+                            <StackPanel Margin="0, 0, 100, 0"  Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="18" FontWeight="Bold" Text="{x:Bind NomAdherent}"/>
+                                <TextBlock FontSize="18" FontWeight="Bold" Text="_"/>
+                                <TextBlock FontSize="18" FontWeight="Bold" Text="{x:Bind PrenomAdherent}"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0, 12, 100, 0" Width="200" Orientation="Horizontal">
+                            <StackPanel Margin="0, 12, 100, 0"  Orientation="Horizontal">
                                 <TextBlock FontFamily="18" Text="{x:Bind Adresse}" />
                                 <TextBlock FontFamily="18" Text="$"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0, 12, 100, 0" Width="100" Orientation="Horizontal">
+                            <StackPanel Margin="0, 12, 100, 0"  Orientation="Horizontal" >
                                 <TextBlock FontFamily="18" Text="{x:Bind DateNais}" />
                                 <TextBlock FontFamily="18" Text="$"/>
                             </StackPanel>
 
-                            <Button x:Name="btn_modifier" Width="100" Click="btn_modifier_Click">
+                            <Button x:Name="btn_modifier"  Click="btn_modifier_Click">
                                 <SymbolIcon Symbol="Edit"/>
                             </Button>
                             <Button x:Name="btn_supprimer" Foreground="red" Margin="0, 0, 100, 0" Width="100" Click="btn_supprimer_Click">
-                                <SymbolIcon Symbol="Delete"/>
+                                <SymbolIcon Symbol="Delete" HorizontalAlignment="Right"/>
                             </Button>
 
 

@@ -112,23 +112,67 @@ namespace TravailSession.Classes
             return liste[position];
         }
 
-        public void modifierAdherent(int position, AdherentClasse adherent)
+        public void modifierAdherent( AdherentClasse adherent,string nom, string prenom, string adresse, string date)
         {
-            liste[position] = adherent;
+
+            string id = adherent.IdAdherent;
+
+            try
+            {
+                MySqlCommand command1 = new MySqlCommand();
+                command1.Connection = con;
+                command1.CommandText = "UPDATE adherent SET nomAdherent=@nom ,prenomAdherent=@prenom , adresse=@adresse , dateNais=@date WHERE idAdherent=@id ";
+                command1.Parameters.AddWithValue("@nom", nom);
+                command1.Parameters.AddWithValue("@prenom", prenom);
+                command1.Parameters.AddWithValue("@adresse", adresse);
+                command1.Parameters.AddWithValue("@date", date);
+                command1.Parameters.AddWithValue("@id", id);
+                con.Open();
+                command1.Prepare();
+                command1.ExecuteNonQuery();
+                con.Close();
+
+
+            }
+            catch (Exception ex) {
+            
+            if(con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+            liste.Clear ();
+            getAdherent();
+
+
+
+            
         }
         public void supprimerAdherent(AdherentClasse adherent)
         {
             try
             {
                 string id = adherent.IdAdherent;
+                MySqlCommand command = new MySqlCommand();
+                command.Connection = con;
+                command.CommandText = $"DELETE FROM adherent WHERE idAdherent = '"+id+"'";
+
+                con.Open();
+                    int demande = command.ExecuteNonQuery();
+                con.Close();
+
+                
+
+
             }
             catch (Exception ex)
             {
+
+                Console.WriteLine(ex.ToString());
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
 
             }
-
+                liste.Clear();
+                getAdherent();
             //liste.RemoveAt(position);
         }
     }

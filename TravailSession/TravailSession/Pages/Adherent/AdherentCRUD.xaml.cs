@@ -44,9 +44,9 @@ namespace TravailSession.Pages.Adherent
             Button btn = sender as Button;
             AdherentClasse adherentClasse = btn.DataContext as AdherentClasse;
 
-            int index =SingletonAdherent.getInstance().getListe().IndexOf(adherentClasse);
 
-            //SingletonAdherent.getInstance().supprimerAdherent(index);
+            SingletonAdherent.getInstance().supprimerAdherent(adherentClasse);
+
         }
 
         private void btn_modifier_Click(object sender, RoutedEventArgs e)
@@ -54,9 +54,7 @@ namespace TravailSession.Pages.Adherent
             Button btn = (Button)sender;
             AdherentClasse adherentClasse = btn.DataContext as AdherentClasse;
 
-            int index = SingletonAdherent.getInstance().getListe().IndexOf(adherentClasse);
-
-            this.Frame.Navigate(typeof(AdherentU),index);
+            this.Frame.Navigate(typeof(AdherentU),adherentClasse);
         }
 
         // naviguer dans la page ajout 
