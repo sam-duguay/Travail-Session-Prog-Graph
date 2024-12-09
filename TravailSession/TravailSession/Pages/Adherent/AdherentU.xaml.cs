@@ -111,8 +111,9 @@ namespace TravailSession.Pages.Adherent
                 tbx_adresse.Text = "";
                 dp_naissance.Date = DateTime.Now.AddYears(-18);
 
-
+                this.Frame.GoBack();
             }
+
 
 
         }

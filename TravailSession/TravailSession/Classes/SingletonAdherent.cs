@@ -166,7 +166,6 @@ namespace TravailSession.Classes
             catch (Exception ex)
             {
 
-                Console.WriteLine(ex.ToString());
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
 

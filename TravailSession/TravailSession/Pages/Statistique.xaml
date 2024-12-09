@@ -10,46 +10,45 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 <ScrollView>
     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center"  >
-        
-            
-       
-            <StackPanel Orientation="Horizontal" Margin="20">
-                <TextBlock> Nombre total d'adhérent: </TextBlock>
+
+
+
+            <StackPanel Orientation="Horizontal"  Height="50"  >
+                <TextBlock Margin="0,0,10,0"> Nombre total d'adhérent:     </TextBlock>
                 <TextBlock x:Name="tb_nb_total_adherent" ></TextBlock>
             
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="20">
-                <TextBlock>Nombre total d'activité :</TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Margin="0,0,10,0">Nombre total d'activité :</TextBlock>
                 <TextBlock x:Name="tb_nb_total_activite" ></TextBlock>
 
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="20">
+            <StackPanel Orientation="Vertical" Margin="10">
                 <TextBlock>Nombre d'adhérent par activité :</TextBlock>
                 <ListView  x:Name="lv_nb_adherent_x_activite" BorderThickness="5" Height="200" Width="600" BorderBrush="Coral"></ListView>
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="20">
+            <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBlock>Moyenne des notes d'appréciation:</TextBlock>
                 <TextBlock x:Name="tb_moyenne_note_appreciation" ></TextBlock>
 
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="20">
+            <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBlock>L'adhérent avec le plus de cours :</TextBlock>
                 <TextBlock x:Name="tb_adherent_plus_cours" ></TextBlock>
 
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20">
+            <StackPanel Orientation="Vertical" Margin="10">
                 <TextBlock>La date de chaque scéance final par cour :</TextBlock>
                 <ListView  x:Name="lv_sceance_final_cours" BorderThickness="5" Height="200" Width="600" BorderBrush="Coral"></ListView>
 
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="20">
-                <TextBlock>Le cours avec le plus de scéance :</TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Margin="0,0,10,0">Le cours avec le plus de scéance :</TextBlock>
                 <TextBlock x:Name="tb_cours_plus_de_sceance" ></TextBlock>
-
             </StackPanel>
         
 
