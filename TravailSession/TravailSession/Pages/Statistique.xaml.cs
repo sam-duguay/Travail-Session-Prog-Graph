@@ -37,7 +37,7 @@ namespace TravailSession.Pages
             tb_nb_total_activite.Text = total_activiter();
             //tb_moyenne_note_appreciation;
             tb_cours_plus_de_sceance.Text = plus_sceance();
-            //tb_adherent_plus_cours;
+            tb_adherent_plus_cours.Text = adherent_plus_cour();
             //lv_nb_adherent_x_activite;
             //lv_sceance_final_cours;
 
@@ -106,6 +106,40 @@ namespace TravailSession.Pages
 
 
             return total;
+        }
+        public string adherent_plus_cour()
+        {
+
+            string total = "Aucune Valeur";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "select `Nom du participant`   from  afficher_participant_plus_seances;";
+                con.Open();
+                cmd.ExecuteScalar().ToString();
+
+                total = cmd.ExecuteScalar().ToString();
+                con.Close();
+            }
+            catch (Exception ex) { }
+
+
+            return total;
+        }
+
+
+
+
+
+        public void nb_adherent_activite()
+        {
+
+        }
+
+        public void moy_note_activite()
+        {
+
         }
 
     }

@@ -37,7 +37,7 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock>L'adhérent avec le plus de cours :</TextBlock>
+                <TextBlock Margin="0,0,10,0">L'adhérent avec le plus de cours :</TextBlock>
                 <TextBlock x:Name="tb_adherent_plus_cours" ></TextBlock>
 
             </StackPanel>
