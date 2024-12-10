@@ -62,6 +62,9 @@ namespace TravailSession
             else
             {
                 tbx_user.Header = "ID Adhérent";
+
+                // pour facilité la connection du professeur:
+                tbx_user.Text = "At-2003-852";
                 pwd_user.Visibility = Visibility.Collapsed;
                 admin = false;
             }
