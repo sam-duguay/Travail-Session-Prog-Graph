@@ -21,13 +21,13 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">Nombre total d'activité :</TextBlock>
+                <TextBlock Margin="0,0,10,0">Nombre total d'activités :</TextBlock>
                 <TextBlock x:Name="tb_nb_total_activite" ></TextBlock>
 
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock>Nombre d'adhérent par activité :</TextBlock>
+                <TextBlock>Nombre d'adhérents par activité :</TextBlock>
                 <ListView  x:Name="lv_nb_adherent_x_activite" BorderThickness="5" Height="200" Width="600" BorderBrush="Coral">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="Classe:ActiviteClasse">
@@ -48,7 +48,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">Moyenne des notes d'appréciation:</TextBlock>
+                <TextBlock Margin="0,0,10,0">Moyenne des notes d'appréciations:</TextBlock>
                 <TextBlock x:Name="tb_moyenne_note_appreciation" ></TextBlock>
 
             </StackPanel>
@@ -58,7 +58,7 @@
 
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock>La date de chaque scéance final par cour :</TextBlock>
+                <TextBlock>La date de chaque séance finale par cour :</TextBlock>
                 <ListView  x:Name="lv_sceance_final_cours" BorderThickness="5" Height="200" Width="600" BorderBrush="Coral">
 
                     <ListView.ItemTemplate>
@@ -82,7 +82,7 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">Le cours avec le plus de scéance :</TextBlock>
+                <TextBlock Margin="0,0,10,0">Le cours avec le plus de séances :</TextBlock>
                 <TextBlock x:Name="tb_cours_plus_de_sceance" ></TextBlock>
             </StackPanel>
         

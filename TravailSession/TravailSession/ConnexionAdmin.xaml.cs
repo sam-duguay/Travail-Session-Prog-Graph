@@ -134,8 +134,19 @@ namespace TravailSession
                             }
                             else
                             {
-                                args.Cancel = true;
-                                tbl_validation_pwd.Text = "Le mots de passe n'est pas valide";
+
+                                if (string.IsNullOrEmpty(pwd_user.Password))
+                                {
+                                    args.Cancel = true;
+                                    tbl_validation_pwd.Text = "Le mot de passe est vide";
+                                }
+                                else
+                                {
+                                    args.Cancel = true;
+                                    tbl_validation_pwd.Text = "Le mots de passe n'est pas valide";
+                                }
+
+                                
                             }
 
 
@@ -195,7 +206,7 @@ namespace TravailSession
                         sessionAdherent.cree(new AdherentClasse(reader2["nomAdherent"].ToString(),
                                                                     reader2["prenomAdherent"].ToString(),
                                                                     reader2["adresse"].ToString(),
-                                                                    (DateTime)reader2["dateNais"],
+                                                                    (DateOnly)reader2["dateNais"],
                                                                     (int)reader2["age"]
                                                                     ));
                         sessionAdherent._Adherent.IdAdherent = reader2["idAdherent"].ToString();

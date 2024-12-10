@@ -43,7 +43,7 @@ namespace TravailSession.Pages.Adherent
                 tbx_nom.Text = adherentModif.NomAdherent;
                 tbx_prenom.Text =adherentModif.PrenomAdherent;
                 tbx_adresse.Text= adherentModif.Adresse;
-                dp_naissance.Date = adherentModif.DateNais.Date;
+                dp_naissance.Date = new DateTime(adherentModif.DateNais.Year, adherentModif.DateNais.Month, adherentModif.DateNais.Day);
            
             
             }
@@ -121,11 +121,6 @@ namespace TravailSession.Pages.Adherent
 
         private void resetChamps()
         {
-            tbx_nom.Text = "";
-            tbx_prenom.Text = "";
-            tbx_adresse.Text = "";
-            dp_naissance.Date = DateTime.Now.AddYears(-18);
-
             tbl_erreur_nom.Text = "";
             tbl_erreur_prenom.Text = "";
             tbl_erreur_adresse.Text = "";

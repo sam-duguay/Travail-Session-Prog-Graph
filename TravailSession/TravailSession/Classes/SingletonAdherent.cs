@@ -55,7 +55,7 @@ namespace TravailSession.Classes
                 string nom = r.GetString("nomAdherent");
                 string prenom = r.GetString("prenomAdherent");
                 string adresse = r.GetString("adresse");
-                DateTime date = r.GetDateTime("dateNais");
+                DateOnly date = DateOnly.FromDateTime(r.GetDateTime("dateNais"));
                 int age = r.GetInt32("age");
 
 

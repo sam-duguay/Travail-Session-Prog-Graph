@@ -46,7 +46,7 @@
                 <Button x:Name="btn_ajout" FontSize="20" Click="btn_ajout_Click">
                     Ajouter
                 </Button>
-                <TextBlock x:Name="tbl_non_ajout" Foreground="DarkRed"/>
+                <TextBlock x:Name="tbl_ajout" Foreground="DarkRed"/>
                 
             </StackPanel>
             

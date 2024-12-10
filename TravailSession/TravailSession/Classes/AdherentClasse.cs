@@ -12,12 +12,12 @@ namespace TravailSession.Classes
         string nomAdherent;
         string prenomAdherent;
         string adresse;
-        DateTime dateNais;
+        DateOnly dateNais;
         int age;
 
      
 
-        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTime dateNais)
+        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateOnly dateNais)
         {
             this.nomAdherent = nomAdherent;
             this.prenomAdherent = prenomAdherent;
@@ -25,7 +25,7 @@ namespace TravailSession.Classes
             this.dateNais = dateNais;
         }
 
-        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTime dateNais, int age)
+        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateOnly dateNais, int age)
         {
             this.nomAdherent = nomAdherent;
             this.prenomAdherent = prenomAdherent;
@@ -38,7 +38,7 @@ namespace TravailSession.Classes
         public string NomAdherent { get => nomAdherent; set => nomAdherent = value; }
         public string PrenomAdherent { get => prenomAdherent; set => prenomAdherent = value; }
         public string Adresse { get => adresse; set => adresse = value; }
-        public DateTime DateNais { get => dateNais; set => dateNais = value; }
+        public DateOnly DateNais { get => dateNais; set => dateNais = value; }
         public int Age { get => age; set => age = value; }
     }
 }
