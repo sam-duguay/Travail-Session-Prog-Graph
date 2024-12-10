@@ -13,6 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
+using System.Collections.ObjectModel;
+using TravailSession.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,21 +27,26 @@ namespace TravailSession.Pages
     public sealed partial class Statistique : Page
     {
         MySqlConnection con;
-   
+
+
+        ObservableCollection<ActiviteClasse> liste_nb_adherent;
+        ObservableCollection<SeanceClasse> listeSeanceFinal;
+
 
         public Statistique()
         {
             con = new MySqlConnection("Server=cours.cegep3r.info;Database=a2024_420-345-ri_eq3;Uid=1073274;Pwd=1073274;");
 
+           
 
             this.InitializeComponent();
             tb_nb_total_adherent.Text = total_adherent();
             tb_nb_total_activite.Text = total_activiter();
-            //tb_moyenne_note_appreciation;
+            tb_moyenne_note_appreciation.Text = moy_note_activite();
             tb_cours_plus_de_sceance.Text = plus_sceance();
             tb_adherent_plus_cours.Text = adherent_plus_cour();
-            //lv_nb_adherent_x_activite;
-            //lv_sceance_final_cours;
+            lv_nb_adherent_x_activite.ItemsSource = nbAdherentActivite();
+            lv_sceance_final_cours.ItemsSource = sceanceFinal();
 
 
 
@@ -129,16 +136,83 @@ namespace TravailSession.Pages
         }
 
 
-
-
-
-        public void nb_adherent_activite()
+        private ObservableCollection<SeanceClasse> sceanceFinal()
         {
+            listeSeanceFinal = new ObservableCollection<SeanceClasse>();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT *FROM seance GROUP BY nomActivite ORDER BY MAX(dateSeance);";
+            con.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                DateOnly date = DateOnly.FromDateTime(reader.GetDateTime("dateSeance"));
+                string activite = reader.GetString("nomActivite");
+
+                SeanceClasse ligne = new SeanceClasse(date,activite);
+                listeSeanceFinal.Add(ligne);
+
+            }
+
+            reader.Close();
+            con.Close();
+
+            return listeSeanceFinal;
+
+
 
         }
 
-        public void moy_note_activite()
+
+        private ObservableCollection<ActiviteClasse> nbAdherentActivite()
         {
+            liste_nb_adherent = new ObservableCollection<ActiviteClasse>();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT * FROM nbparticpantparactivite";
+            con.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) 
+            {
+                string nom= reader.GetString("nomActivite");
+                string nbr = reader.GetInt64("nbParticipant").ToString();
+
+                ActiviteClasse ligne = new ActiviteClasse(nom, nbr);
+                liste_nb_adherent.Add(ligne);
+
+            }
+
+            reader.Close();
+            con.Close();
+
+            return liste_nb_adherent;
+
+
+
+        }
+
+        public string  moy_note_activite()
+        {
+            string total = "Aucune Valeur";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "select avg(moyennenotesparactivite.moyenneNotes) FROM moyennenotesparactivite;";
+                con.Open();
+                cmd.ExecuteScalar().ToString();
+
+                total = cmd.ExecuteScalar().ToString();
+                con.Close();
+            }
+            catch (Exception ex) { }
+
+
+            return total;
 
         }
 

@@ -16,6 +16,8 @@ namespace TravailSession.Classes
 
         double moyenne;
 
+        string nbr_adherent;
+
         //Les propriétés
         public string Nom { get => nom; set => nom = value; }
         public string Type { get => type; set => type = value; }
@@ -24,6 +26,7 @@ namespace TravailSession.Classes
 
 
         public double Moyenne { get => moyenne; set => moyenne = value; }
+        public string Nbr_adherent { get => nbr_adherent; set => nbr_adherent = value; }
 
 
         //Le constructeur
@@ -34,5 +37,13 @@ namespace TravailSession.Classes
             this.coutOrganisationClient = coutOrganisationClient;
             this.prixVenteClient = prixVenteClient;
         }
+
+
+        public ActiviteClasse(string nom,string nbr_adherent) 
+        {
+            this.nom = nom;
+            this.Nbr_adherent = nbr_adherent;
+        }
+
     }
 }
