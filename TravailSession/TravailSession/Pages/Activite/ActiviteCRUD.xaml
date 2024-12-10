@@ -63,7 +63,7 @@
 
             </StackPanel>
 
-            <ListView x:Name="lv_activite" Height="1000">
+            <ListView x:Name="lv_activite" Height="500">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Classes:ActiviteClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">

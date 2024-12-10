@@ -64,7 +64,7 @@
 
             </StackPanel>
 
-            <ListView x:Name="lv_adherent" Height="1000">
+            <ListView x:Name="lv_adherent" Height="500">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Classes:AdherentClasse">
                         <StackPanel Orientation="Horizontal"   BorderBrush="AliceBlue" >

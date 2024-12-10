@@ -58,7 +58,7 @@
 
             </StackPanel>
 
-            <ListView x:Name="lv_activite" Height="1000" SelectionChanged="lv_activite_SelectionChanged">
+            <ListView x:Name="lv_activite" Height="500" SelectionChanged="lv_activite_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Classes:ActiviteClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">

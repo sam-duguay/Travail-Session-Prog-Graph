@@ -65,7 +65,7 @@
 
             </StackPanel>
 
-            <ListView x:Name="lv_seance" Height="1000">
+            <ListView x:Name="lv_seance" Height="500">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Classes:SeanceClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
