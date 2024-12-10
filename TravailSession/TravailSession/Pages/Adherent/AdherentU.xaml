@@ -46,7 +46,7 @@
                 <Button x:Name="btn_mod" FontSize="20" Click="btn_mod_Click">
                    Modifier
                 </Button>
-                <TextBlock x:Name="tbl_non_ajout" Foreground="DarkRed"/>
+                <TextBlock x:Name="tbl_modifié" Foreground="DarkRed"/>
 
             </StackPanel>
 

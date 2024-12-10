@@ -9,26 +9,47 @@
     xmlns:Classe="using:TravailSession.Classes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<ScrollView>
-    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+    <ScrollView>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-
-
-            <StackPanel Orientation="Horizontal"  Height="50"  >
-                <TextBlock Margin="0,0,10,0"> Nombre total d'adhérent:     </TextBlock>
-                <TextBlock x:Name="tb_nb_total_adherent" ></TextBlock>
             
-            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18"  Text="• "/>
+                    <TextBlock FontSize="20" TextDecorations="Underline" Text="Nombre total d'adhérent: "/>
+                    <TextBlock FontSize="20" x:Name="tb_nb_total_adherent" ></TextBlock>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">Nombre total d'activité :</TextBlock>
-                <TextBlock x:Name="tb_nb_total_activite" ></TextBlock>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock FontSize="18"  Text="• "/>
+                    <TextBlock FontSize="20" TextDecorations="Underline">Nombre total d'activités:</TextBlock>
+                    <TextBlock FontSize="20" x:Name="tb_nb_total_activite" ></TextBlock>
+                </StackPanel>
 
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18"  Text="• "/>
+                    <TextBlock FontSize="20" TextDecorations="Underline">Moyenne des notes d'appréciations:</TextBlock>
+                    <TextBlock FontSize="20" x:Name="tb_moyenne_note_appreciation" ></TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18"  Text="• "/>
+                    <TextBlock FontSize="20" TextDecorations="Underline">L'adhérent avec le plus de cours:</TextBlock>
+                    <TextBlock FontSize="20" x:Name="tb_adherent_plus_cours" ></TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18"  Text="• "/>
+                    <TextBlock FontSize="20" TextDecorations="Underline">Le cours avec le plus de séances :</TextBlock>
+                    <TextBlock FontSize="20" x:Name="tb_cours_plus_de_sceance" ></TextBlock>
+                </StackPanel>
             </StackPanel>
+            
+
 
             <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock>Nombre d'adhérent par activité :</TextBlock>
-                <ListView  x:Name="lv_nb_adherent_x_activite" BorderThickness="5" Height="200" Width="600" BorderBrush="Coral">
+                <TextBlock>Nombre d'adhérents par activité :</TextBlock>
+                <ListView  x:Name="lv_nb_adherent_x_activite" BorderThickness="5" Height="200" Width="600" BorderBrush="Black">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="Classe:ActiviteClasse">
                             <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
@@ -47,19 +68,10 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">Moyenne des notes d'appréciation:</TextBlock>
-                <TextBlock x:Name="tb_moyenne_note_appreciation" ></TextBlock>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">L'adhérent avec le plus de cours :</TextBlock>
-                <TextBlock x:Name="tb_adherent_plus_cours" ></TextBlock>
-
-            </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock>La date de chaque scéance final par cour :</TextBlock>
-                <ListView  x:Name="lv_sceance_final_cours" BorderThickness="5" Height="200" Width="600" BorderBrush="Coral">
+                <TextBlock>La date de chaque séance finale par cour :</TextBlock>
+                <ListView  x:Name="lv_sceance_final_cours" BorderThickness="5" Height="200" Width="600" BorderBrush="black">
 
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="Classe:SeanceClasse">
@@ -81,12 +93,9 @@
 
 
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Margin="0,0,10,0">Le cours avec le plus de scéance :</TextBlock>
-                <TextBlock x:Name="tb_cours_plus_de_sceance" ></TextBlock>
-            </StackPanel>
-        
 
-    </StackPanel>
- </ScrollView>
+
+
+        </StackPanel>
+    </ScrollView>
 </Page>

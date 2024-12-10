@@ -52,9 +52,7 @@ namespace TravailSession.Pages.Adherent
             string date_naiss = dp_naissance.Date.Value.ToString("yyyy-MM-dd");
 
 
-
-
-                bool estValide = true;
+            bool estValide = true;
 
          
             resetChamps();
@@ -84,7 +82,10 @@ namespace TravailSession.Pages.Adherent
             //L'ajout se fait uniquement SI les formulaires est valide
             if (estValide)
             {
-                
+
+                //AJOUTER UN MESSAGE DE CONFIRMATION DE L'AJOUT
+                tbl_ajout.Text = "L'adhérent a été ajouté!";
+
 
                 //Ajout de l'activité dans la BD avec l'aide d'un singleton
                 SingletonAdherent.getInstance().ajouterAdherent(nom, prenom, adresse, date_naiss);
@@ -103,10 +104,6 @@ namespace TravailSession.Pages.Adherent
 
         private void resetChamps()
         {
-            tbx_nom.Text = "";
-            tbx_prenom.Text = "";
-            tbx_adresse.Text = "";
-            dp_naissance.Date = DateTime.Now.AddYears(-18);
 
             tbl_erreur_nom.Text = "";
             tbl_erreur_prenom.Text = "";

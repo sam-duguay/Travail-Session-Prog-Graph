@@ -14,8 +14,8 @@
                         BackRequested="navView_BackRequested"
             IsSettingsVisible="False">
             <NavigationView.PaneCustomContent>
-                <StackPanel>
-                    <TextBlock Text="Déconnecté" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat"/>
+                <StackPanel Margin="15">
+                    <TextBlock Text="Déconnecté" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="tbl_etat" FontWeight="SemiBold" TextDecorations="Underline"/>
                 </StackPanel>
                
             </NavigationView.PaneCustomContent>
