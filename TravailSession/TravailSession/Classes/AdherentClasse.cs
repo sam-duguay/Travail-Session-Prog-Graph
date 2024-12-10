@@ -33,7 +33,7 @@ namespace TravailSession.Classes
             this.dateNais = dateNais;
             this.age = age;
         }
-
+        public string RetourCsv { get { return $"{IdAdherent};{NomAdherent};{PrenomAdherent};{Adresse};{DateNais}"; } }
         public string IdAdherent { get => idAdherent; set => idAdherent = value; }
         public string NomAdherent { get => nomAdherent; set => nomAdherent = value; }
         public string PrenomAdherent { get => prenomAdherent; set => prenomAdherent = value; }

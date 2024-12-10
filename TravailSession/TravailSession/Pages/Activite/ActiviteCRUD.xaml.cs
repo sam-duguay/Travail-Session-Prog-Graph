@@ -16,6 +16,8 @@ using Microsoft.UI.Xaml.Navigation;
 using TravailSession.Classes;
 using System.Collections.ObjectModel;
 using TravailSession.Pages;
+using MySqlX.XDevAPI;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -64,6 +66,32 @@ namespace TravailSession.Pages.Activite
 
 
             SingletonActivite.getInstance().supprimerActivite(activite);
+        }
+
+        private async void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(Utilitaires.mainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "liste des activite";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            List<ActiviteClasse> liste = SingletonActivite.getInstance().Liste.ToList<ActiviteClasse>();
+
+
+            // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+            if (monFichier != null)
+            {
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.RetourCsv), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            }
+            
+
         }
     }
 }

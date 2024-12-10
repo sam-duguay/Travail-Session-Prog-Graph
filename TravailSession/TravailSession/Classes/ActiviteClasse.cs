@@ -45,5 +45,8 @@ namespace TravailSession.Classes
             this.Nbr_adherent = nbr_adherent;
         }
 
+        public string RetourCsv { get { return $"{Nom};{Type};{CoutOrganisationClient};{prixVenteClient}"; } }
+
+
     }
 }

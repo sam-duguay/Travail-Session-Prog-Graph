@@ -62,5 +62,34 @@ namespace TravailSession.Pages.Adherent
         {
             this.Frame.Navigate(typeof(AdherentC));
         }
+
+
+        private async void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(Utilitaires.mainWindow);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "liste des adherent";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            List<AdherentClasse> liste = SingletonAdherent.getInstance().Liste.ToList<AdherentClasse>();
+
+
+            // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+            if (monFichier != null)
+            {
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.RetourCsv), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            }
+
+
+        }
+
+
     }
 }

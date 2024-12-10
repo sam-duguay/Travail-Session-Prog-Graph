@@ -32,6 +32,9 @@ namespace TravailSession
         public MainWindow()
         {
             this.InitializeComponent();
+
+            Utilitaires.mainWindow = this;
+
             mainFrame.Navigate(typeof(AccueilActivite));
 
 
