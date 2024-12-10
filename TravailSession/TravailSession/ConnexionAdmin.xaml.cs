@@ -206,7 +206,7 @@ namespace TravailSession
                         sessionAdherent.cree(new AdherentClasse(reader2["nomAdherent"].ToString(),
                                                                     reader2["prenomAdherent"].ToString(),
                                                                     reader2["adresse"].ToString(),
-                                                                    (DateOnly)reader2["dateNais"],
+                                                                    DateOnly.FromDateTime(reader2.GetDateTime("dateNais")),
                                                                     (int)reader2["age"]
                                                                     ));
                         sessionAdherent._Adherent.IdAdherent = reader2["idAdherent"].ToString();
