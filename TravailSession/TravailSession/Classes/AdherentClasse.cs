@@ -12,12 +12,12 @@ namespace TravailSession.Classes
         string nomAdherent;
         string prenomAdherent;
         string adresse;
-        DateTimeOffset dateNais;
+        DateTime dateNais;
         int age;
 
      
 
-        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTimeOffset dateNais)
+        public AdherentClasse(string nomAdherent, string prenomAdherent, string adresse, DateTime dateNais)
         {
             this.nomAdherent = nomAdherent;
             this.prenomAdherent = prenomAdherent;
@@ -30,7 +30,7 @@ namespace TravailSession.Classes
             this.nomAdherent = nomAdherent;
             this.prenomAdherent = prenomAdherent;
             this.adresse = adresse;
-            this.dateNais = new DateTimeOffset(dateNais);
+            this.dateNais = dateNais;
             this.age = age;
         }
 
@@ -38,7 +38,7 @@ namespace TravailSession.Classes
         public string NomAdherent { get => nomAdherent; set => nomAdherent = value; }
         public string PrenomAdherent { get => prenomAdherent; set => prenomAdherent = value; }
         public string Adresse { get => adresse; set => adresse = value; }
-        public DateTimeOffset DateNais { get => dateNais; set => dateNais = value; }
+        public DateTime DateNais { get => dateNais; set => dateNais = value; }
         public int Age { get => age; set => age = value; }
     }
 }
