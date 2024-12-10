@@ -43,6 +43,12 @@ namespace TravailSession.Classes
             this.TypeActivite = typeActivite;
         }
 
-        
+        public SeanceClasse(DateOnly dateSeance, string nomActivite)
+        {
+            this.dateSeance = dateSeance;
+            this.nomActivite = nomActivite;
+        }
+
+
     }
 }

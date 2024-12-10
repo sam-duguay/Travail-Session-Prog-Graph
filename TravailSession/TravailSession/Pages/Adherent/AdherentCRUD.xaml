@@ -40,9 +40,9 @@
         <!-- ListView qui contiendra les éléments de la liste -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="15" HorizontalAlignment="Center">
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="stretch">
 
-                <StackPanel Margin="0, 0, 100, 0">
+                <StackPanel Margin="0, 0, 100, 0" >
                     <TextBlock FontSize="30" FontWeight="ExtraLight" Text="ID " />
                 </StackPanel>
 
@@ -66,7 +66,7 @@
                     <DataTemplate x:DataType="Classes:AdherentClasse">
                         <StackPanel Orientation="Horizontal" BorderBrush="AliceBlue">
                             <StackPanel Margin="0, 0,80 , 0">
-                                <TextBlock FontSize="18" FontWeight="Bold" Text="{x:Bind IdAdherent}" HorizontalAlignment="Left"/>
+                                <TextBlock FontSize="18" FontWeight="Bold" Text="{x:Bind IdAdherent}" HorizontalAlignment="center"/>
                             </StackPanel>
 
                             <StackPanel Margin="0, 0, 100, 0"  Orientation="Horizontal" HorizontalAlignment="Center">
