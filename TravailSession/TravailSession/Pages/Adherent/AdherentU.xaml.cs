@@ -103,7 +103,7 @@ namespace TravailSession.Pages.Adherent
 
                 //Ajout de l'activité dans la BD avec l'aide d'un singleton
                 
-                SingletonAdherent.getInstance().modifierAdherent(adherentModif,nom,prenom,adresse,date_naiss);
+                SingletonAdherent.getInstance().modifierAdherent(adherentModif,nom.TrimStart(), prenom.TrimStart(), adresse.TrimStart(), date_naiss);
 
                 //Vide les champs pour préparer l'ajout d'une nouvelle activité
                 tbx_nom.Text = "";

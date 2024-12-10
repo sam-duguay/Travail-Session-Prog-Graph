@@ -128,7 +128,7 @@ namespace TravailSession.Pages.Seance
 
 
                 //Ajout de la séance dans la BD avec l'aide d'un singleton
-                SingletonSeance.getInstance().modifierSeance(seanceModif, date, heure, Int32.Parse(nbPlace), nomActivite, nomCategorie);
+                SingletonSeance.getInstance().modifierSeance(seanceModif, date, heure, Int32.Parse(nbPlace), nomActivite.TrimStart(), nomCategorie.TrimStart());
 
 
                 //Redirige à la page précédente

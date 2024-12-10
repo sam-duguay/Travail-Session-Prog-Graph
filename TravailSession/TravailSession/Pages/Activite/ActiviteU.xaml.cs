@@ -133,7 +133,7 @@ namespace TravailSession.Pages.Activite
                 }
 
 
-                SingletonActivite.getInstance().modifierActivite(activiteModif, nom, type, Double.Parse(cout), Double.Parse(prix));
+                SingletonActivite.getInstance().modifierActivite(activiteModif, nom.TrimStart(), type.TrimStart(), Double.Parse(cout), Double.Parse(prix));
 
                 //Redirige à la page précédente
                 this.Frame.GoBack();

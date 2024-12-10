@@ -111,7 +111,7 @@ namespace TravailSession.Pages.Activite
                 }
 
                 //Ajout de l'activité dans la BD avec l'aide d'un singleton
-                SingletonActivite.getInstance().ajouterActivite(nom, type, Double.Parse(cout), Double.Parse(prix));
+                SingletonActivite.getInstance().ajouterActivite(nom.TrimStart(), type.TrimStart(), Double.Parse(cout), Double.Parse(prix));
 
                 //Vide les champs pour préparer l'ajout d'une nouvelle activité
                 tbx_nom.Text = "";

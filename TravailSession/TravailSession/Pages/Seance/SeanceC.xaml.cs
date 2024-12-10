@@ -101,7 +101,7 @@ namespace TravailSession.Pages.Seance
 
 
                 //Ajout de la séance dans la BD avec l'aide d'un singleton
-                SingletonSeance.getInstance().ajouterSeance(date, heure, Int32.Parse(nbPlace), nomActivite, nomCategorie);
+                SingletonSeance.getInstance().ajouterSeance(date, heure, Int32.Parse(nbPlace), nomActivite.TrimStart(), nomCategorie.TrimStart());
                 tbl_succes.Text = "La séance a été ajoutée!";
 
 
